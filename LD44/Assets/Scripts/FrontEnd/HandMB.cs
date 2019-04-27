@@ -8,16 +8,14 @@ public class HandMB : MonoBehaviour
     {
         for (int i = 0; i < Deck.Hand.Count; i++)
         {
-            Deck.Hand[i].SetTargetPos(CalculatePos(i));
+            Deck.Hand[i].SetTargetPos(new Vector2(CalculatePos(i), 1.5f));
         }
     }
 
-    private Vector2 CalculatePos(int index)
+    public static float CalculatePos(int index)
     {
-        Vector2 result = new Vector2(0, 1.5f);
         float centerIndex = Deck.Hand.Count / 2f;
         float relIndexPos = index - centerIndex;
-        result.x = relIndexPos * CardWidth + 8;
-        return result;
+        return relIndexPos * CardWidth + 8;
     }
 }

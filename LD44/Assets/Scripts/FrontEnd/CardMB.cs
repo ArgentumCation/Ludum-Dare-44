@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class CardMB : MonoBehaviour
 {
-    private Card _meCard;
+    public Card MeCard;
     private Vector2 _targetPos;
     private bool _dragging;
 
     public void Init(Card c, Vector2 pos)
     {
-        _meCard = c;
+        MeCard = c;
         transform.position = pos;
     }
 
@@ -31,7 +31,7 @@ public class CardMB : MonoBehaviour
     {
         _dragging = false;
         if (transform.position.y > 3)
-            BattleActionManager.Click(_meCard);
+            BattleActionManager.Click(MeCard);
         else
         {
             Deck.InsertIntoHand(this);

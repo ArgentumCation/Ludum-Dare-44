@@ -1,46 +1,62 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Deck
 {
-    static List<Card> draws;
+    public static List<Card> Draws;
 
-    static List<Card> discards;
+    public static List<Card> Discards;
 
-    static List<Card> hand;
+    public static List<CardMB> Hand;
 
     public static Card DrawCard()
     {
-        // if draws empty, shuffle discard and put into draws
-        if(draws.Count == 0)
+        // if Draws empty, shuffle discard and put into Draws
+        if(Draws.Count == 0)
         {
-            if(discards.Count == 0)
-            {
-                throw new System.Exception("No cards remaining!");
-            }
-            foreach(Card card in discards)
-            {
-                int choice = Random.Range(0, discards.Count);
-                Card temp = discards[choice];
-                discards.RemoveAt(3);
-                draws.Add(temp);
-            }
+            Shuffle(Discards);
+            Draws = Discards;
+            Discards = new List<Card>();
         }
 
 
-        return draws[0];
+        return Draws[0];
     }
 
-    public static void Discard(Card card)
+    public static void Discard(CardMB cardMb)
     {
-        if (!hand.Contains(card))
+        if (!Hand.Contains(cardMb))
         {
             throw new System.Exception("Card isnt able to be discarded");
         }
 
-        hand.Remove(card);
-        discards.Add(card);
+        Hand.Remove(cardMb);
+        Discards.Add(cardMb.MeCard);
     }
 
+    public static void InsertIntoHand(CardMB cardMb)
+    {
+        float cardMbX = cardMb.transform.position.x;
+        for (int i = 0; i < Hand.Count; i++)
+        {
+            if (cardMbX < HandMB.CalculatePos(i))
+            {
+                Hand.Insert(i, cardMb);
+                return;
+            }
+        }
+        Hand.Add(cardMb);
+    }
+
+    public static void Shuffle(List<Card> list)
+    {
+        int listCount = list.Count;
+        for (int i = 0; i < listCount; i++)
+        {
+            int j = Random.Range(i, listCount - 1);
+            Card temp = list[i];
+            list[i] = list[j];
+            list[j] = temp;
+        }
+    }
 }
