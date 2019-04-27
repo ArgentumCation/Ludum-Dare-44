@@ -5,17 +5,16 @@ public class BuffCard : Card
     // Health player will lose or gain after casting
     public int HealthCost;
 
-    // Whether or not card can traget friendly entities
-    public bool CanTargetFriendly;
-
-    // Amount of entities card can target
-    public int NumTargets;
+    public BuffCard()
+    {
+        
+    }
 
     // Casts the card effect
-    public void Cast(IEnumerable<Entity> targets)
+    public override void Cast(IEnumerable<Entity> targets)
     {
         Player p = Player.PlayerRef;
-        if (p.CanCast(HealthCost))
+        if (p.CanCast(this))
         {
             p.Buffs.Add(new Buff());
             p.Damage(HealthCost);

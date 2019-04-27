@@ -2,5 +2,8 @@
 
 public class Room
 {
-
+    public virtual void Enter()
+    {
+        
+    }
 }

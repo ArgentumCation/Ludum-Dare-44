@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 public class Entity
 {
@@ -15,21 +13,15 @@ public class Entity
 
     // Current buffs on entity
     public List<Buff> Buffs;
-
-    // returns current entity health
-    public int GetHealth()
-    {
-        return CurrentHealth;
-    }
     
     // kills entity
-    public void Die()
+    public virtual void Die()
     {
 
     }
 
     // changes entity health
-    public void Damage(int damage)
+    public virtual void Damage(int damage)
     {
         CurrentHealth -= damage;
     }

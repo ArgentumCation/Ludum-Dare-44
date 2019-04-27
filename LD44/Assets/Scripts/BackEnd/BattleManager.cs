@@ -1,15 +1,15 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
 public class BattleManager
 {
-    public List<Entity> enemies;
+    public List<Entity> Enemies;
 
-    public List<Entity> friendlies;
+    public List<Entity> Friendlies;
 
     public BattleManager(List<Entity> friendlies, List<Entity> enemies)
     {
-        this.friendlies = friendlies;
-        this.enemies = enemies;
+        Friendlies = friendlies;
+        Enemies = enemies;
     }
 
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 public class HealingCard : Card
@@ -20,7 +18,7 @@ public class HealingCard : Card
     public int AttackDamage;
 
     // Casts the card effect on all targets.
-    public void Cast(IEnumerable<Entity> targets)
+    public override void Cast(IEnumerable<Entity> targets)
     {
         List<Entity> targetList = targets.ToList();
 
@@ -34,7 +32,7 @@ public class HealingCard : Card
     }
 
     // returns the healing value.
-    private int HealingValue()
+    protected virtual int HealingValue()
     {
         return AttackDamage;
     }

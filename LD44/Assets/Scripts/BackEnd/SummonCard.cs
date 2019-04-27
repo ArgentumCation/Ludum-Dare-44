@@ -2,21 +2,26 @@
 
 public class SummonCard : Card
 {
-    // Health player will lose or gain after casting
-    public int HealthCost;
-
-    // Whether or not card can traget friendly entities
-    public bool CanTargetFriendly;
+    public SummonCard()
+    {
+        NumTargets = 0;
+        CanTargetFriendly = false;
+    }
 
     // Casts the card effect;
-    public void Cast(IEnumerable<Entity> targets)
+    public override void Cast(IEnumerable<Entity> targets)
     {
         Player p = Player.PlayerRef;
-        if (p.CanCast(HealthCost))
+        if (p.CanCast(this))
         {
             p.Damage(HealthCost);
-            p.summons.Add(new Friendly());
+            Player.Team.Add(new Friendly());
         }
 
+    }
+
+    protected virtual int HealAmount()
+    {
+        return 0;
     }
 }

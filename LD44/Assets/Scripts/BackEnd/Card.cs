@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 public class Card
 {
@@ -8,13 +6,13 @@ public class Card
     public int HealthCost;
 
     // Whether or not card can traget friendly entities
-    public bool CanTragetFriendly;
+    public bool CanTargetFriendly;
 
     // Amount of entities card can target
     public int NumTargets;
 
     // Casts the card effect;
-    public void Cast(IEnumerable<Entity> targets)
+    public virtual void Cast(IEnumerable<Entity> targets)
     {
     }
 }
