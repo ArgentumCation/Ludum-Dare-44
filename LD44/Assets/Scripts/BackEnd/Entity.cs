@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class Entity
 {
+    // whether or not entity or friendly
+    public bool IsFriendly;
+
     // entity health remaining
-    private int health;
+    public int CurrentHealth;
 
     // max entity health
-    [SerializeField] public int MaxHealth;
+    public int MaxHealth;
 
     // Current buffs on entity
     public List<Buff> Buffs;
 
-
     // returns current entity health
     public int GetHealth()
     {
-        return health;
+        return CurrentHealth;
     }
     
     // kills entity
@@ -29,7 +31,7 @@ public class Entity
     // changes entity health
     public void Damage(int damage)
     {
-        health -= damage;
+        CurrentHealth -= damage;
     }
 
 

@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Player : Entity
 {
-    static Player PlayerRef;
+    public static Player PlayerRef;
 
-    public Artifact[] artifacts = new Artifact[3];
+    public List<Friendly> summons;
 
-    private int health;
+    public Artifact[] artifacts;
+
+    public int CurrentHealth;
 
     public Player()
     {
@@ -22,11 +24,16 @@ public class Player : Entity
 
     public void TakeCastDamage(int damage)
     {
-        health -= damage;
+        CurrentHealth -= damage;
     }
 
     public void TakeHitDamage(int damage)
     {
-        health -= damage;
+        CurrentHealth -= damage;
+    }
+
+    public bool CanCast(int damage)
+    {
+        return damage < CurrentHealth;
     }
 }

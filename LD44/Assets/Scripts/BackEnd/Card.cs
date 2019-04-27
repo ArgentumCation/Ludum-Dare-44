@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class Card
 {
-    // Start is called before the first frame update
-
     // Health player will lose or gain after casting
     public int HealthCost;
 
-    // Whether or not card can target friendly entities
+    // Whether or not card can traget friendly entities
     public bool CanTragetFriendly;
 
     // Amount of entities card can target
