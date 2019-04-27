@@ -15,10 +15,10 @@ public class AttackCard : Card
     // Amount of entities card can target
     public int NumTargets;
 
+    // Damage card deals
     public int AttackDamage;
 
-    // Casts the card effect;
-    // Casts the card effect;
+    // Casts the card effect on all targets
     public void Cast(IEnumerable<Entity> targets)
     {
         List<Entity> targetList = targets.ToList();
@@ -31,7 +31,8 @@ public class AttackCard : Card
             }
         }
     }
-
+    
+    // returns card attack damage
     private int damageValue()
     {
         return AttackDamage;

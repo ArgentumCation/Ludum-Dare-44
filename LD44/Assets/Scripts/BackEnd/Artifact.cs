@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Artifact
 {
-    private int healthCost;
+    private int _healthCost;
     public List<Buff> Buffs;
-
-    
 }
