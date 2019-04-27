@@ -7,10 +7,16 @@ public class Bootstrap : MonoBehaviour
     
     private void Start()
     {
-        Deck.CardBgs = CardBgs;
-        
-        Deck.Draws = new List<Card>();
-        Deck.Draws.Add(new BuffCard());
+        CardMB.CardBgs = CardBgs;
+
+        Deck.Draws = new List<Card>
+        {
+            new BuffCard(),
+            new BuffCard(),
+            new AttackCard()
+        };
+        Deck.DrawCard();
+        Deck.DrawCard();
         Deck.DrawCard();
     }
 }

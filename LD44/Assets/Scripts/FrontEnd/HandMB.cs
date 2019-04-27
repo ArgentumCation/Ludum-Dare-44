@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HandMB : MonoBehaviour
 {
-    private const float CardWidth = 1.8f;
+    private const float CardWidth = 2.6f;
     
     private void Update()
     {
@@ -14,7 +14,7 @@ public class HandMB : MonoBehaviour
 
     public static float CalculatePos(int index)
     {
-        float centerIndex = Deck.Hand.Count / 2f;
+        float centerIndex = (Deck.Hand.Count - 1) / 2f;
         float relIndexPos = index - centerIndex;
         return relIndexPos * CardWidth + 8;
     }

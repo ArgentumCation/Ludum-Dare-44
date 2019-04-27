@@ -11,4 +11,12 @@ public class BattleMB : MonoBehaviour
         _roomMb = r;
         _battleManager = new BattleManager(Player.Team, enemies);
     }
+
+    private void Update()
+    {
+        if (_battleManager == null)
+            return;
+        
+        
+    }
 }

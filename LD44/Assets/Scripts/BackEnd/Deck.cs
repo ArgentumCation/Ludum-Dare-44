@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Deck
 {
-    public static List<Sprite> CardBgs;
-    
-    public static List<Card> Draws;
+    public static List<Card> Draws = new List<Card>();
 
-    public static List<Card> Discards;
+    public static List<Card> Discards = new List<Card>();
 
-    public static List<CardMB> Hand;
+    public static List<CardMB> Hand = new List<CardMB>();
 
-    public static Card DrawCard()
+    public static void DrawCard()
     {
         // if Draws empty, shuffle discard and put into Draws
         if(Draws.Count == 0)
@@ -23,24 +20,9 @@ public class Deck
             Discards = new List<Card>();
         }
 
-        GameObject cardObject = new GameObject();
-        CardMB cardMb = cardObject.AddComponent<CardMB>();
-        SpriteRenderer cardSpriteRenderer = cardObject.AddComponent<SpriteRenderer>();
-        if (Draws[0].GetType() == typeof(AttackCard))
-            cardSpriteRenderer.sprite = CardBgs[0];
-        else if (Draws[0].GetType() == typeof(BuffCard))
-            cardSpriteRenderer.sprite = CardBgs[1];
-        else if (Draws[0].GetType() == typeof(HealingCard))
-            cardSpriteRenderer.sprite = CardBgs[2];
-        else if (Draws[0].GetType() == typeof(SummonCard))
-            cardSpriteRenderer.sprite = CardBgs[3];
-        else
-            throw new ArgumentException("Invalid card: " + Draws[0].GetType().FullName);
-        
-        cardMb.Init(Draws[0], new Vector2(HandMB.CalculatePos(Hand.Count), 1.5f));
-        Hand.Add(cardMb);
-
-        return Draws[0];
+        CardMB newCard = CardMB.Spawn(Draws[0]);
+        Hand.Add(newCard);
+        Draws.RemoveAt(0);
     }
 
     public static void Discard(CardMB cardMb)
