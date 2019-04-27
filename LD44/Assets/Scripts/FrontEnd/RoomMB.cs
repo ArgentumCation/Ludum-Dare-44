@@ -26,6 +26,7 @@ public class RoomMB : MonoBehaviour
                 break;
             case typeof(FountainRoom):
                 _meType = RoomType.FountainRoom;
+                break;
             default:
                 throw new ArgumentException("Unknown Room: " + r.GetType().FullName);
         }

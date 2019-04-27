@@ -9,14 +9,14 @@ public class Card
     // Health player will lose or gain after casting
     public int HealthCost;
 
-    // Whether or not card can traget friendly entities
+    // Whether or not card can target friendly entities
     public bool CanTragetFriendly;
 
     // Amount of entities card can target
     public int NumTargets;
 
     // Casts the card effect;
-    public void Cast(List<Entity> targets)
+    public void Cast(IEnumerable<Entity> targets)
     {
     }
 }

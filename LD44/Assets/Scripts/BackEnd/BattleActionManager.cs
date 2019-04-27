@@ -46,7 +46,7 @@ public class BattleActionManager
         if (_activeCard.NumTargets > _targets.Count)
         {
             Debug.Log("Too many targets! Card: " + _activeCard.GetType().FullName);
-            _activeCard.Cast(_targets.Take(_activeCard.NumTargets));
+            _activeCard.Cast(_targets.Take(_activeCard.NumTargets).ToList());
         }
         else if (_activeCard.NumTargets == _targets.Count)
         {

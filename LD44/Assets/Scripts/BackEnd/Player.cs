@@ -6,7 +6,7 @@ public class Player : Entity
 {
     static Player PlayerRef;
 
-    public Artifact[3] artifacts;
+    public Artifact[] artifacts = new Artifact[3];
 
     private int health;
 

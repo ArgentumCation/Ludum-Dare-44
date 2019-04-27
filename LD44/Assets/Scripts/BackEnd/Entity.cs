@@ -11,7 +11,7 @@ public class Entity
     [SerializeField] public int MaxHealth;
 
     // Current buffs on entity
-    public ArrayList<Buffs> Buffs;
+    public List<Buff> Buffs;
 
 
     // returns current entity health
