@@ -1,14 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 public class BuffCard : Card
-{
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Buff
 {
     // Health player will lose or gain after casting
     public int HealthCost;
@@ -29,6 +21,4 @@ public class Buff
             p.Damage(HealthCost);
         }
     }
-}
-
 }
