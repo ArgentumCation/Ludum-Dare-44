@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Deck
 {
+    public static GameObject CardPrefab;
+    
     public static List<Card> Draws;
 
     public static List<Card> Discards;
@@ -19,6 +21,9 @@ public class Deck
             Discards = new List<Card>();
         }
 
+        CardMB cardMb = Object.Instantiate(CardPrefab).AddComponent<CardMB>();
+        cardMb.Init(Draws[0], new Vector2(HandMB.CalculatePos(Hand.Count), 1.5f));
+        Hand.Add(cardMb);
 
         return Draws[0];
     }

@@ -1,25 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 public class Player : Entity
 {
     public static Player PlayerRef;
 
-    public List<Friendly> summons;
+    public static List<Entity> Team;
 
-    public Artifact[] artifacts;
-
-    public int CurrentHealth;
+    public Artifact[] Artifacts;
 
     public Player()
     {
         if(PlayerRef != null)
         {
             throw new System.Exception("Tried to make second player");
-            
         }
         PlayerRef = this;
+        Team = new List<Entity> { this };
+    }
+
+    public bool CanCast(Card c)
+    {
+        return c.HealthCost < CurrentHealth;
     }
 
     public void TakeCastDamage(int damage)
@@ -32,8 +33,9 @@ public class Player : Entity
         CurrentHealth -= damage;
     }
 
-    public bool CanCast(int damage)
+    public void UseFountain()
     {
-        return damage < CurrentHealth;
+        CurrentHealth = MaxHealth;
+        Team = new List<Entity> { this };
     }
 }
