@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Deck
 {
-    public static GameObject CardPrefab;
+    public static List<Sprite> CardBgs;
     
     public static List<Card> Draws;
 
@@ -21,7 +23,20 @@ public class Deck
             Discards = new List<Card>();
         }
 
-        CardMB cardMb = Object.Instantiate(CardPrefab).AddComponent<CardMB>();
+        GameObject cardObject = new GameObject();
+        CardMB cardMb = cardObject.AddComponent<CardMB>();
+        SpriteRenderer cardSpriteRenderer = cardObject.AddComponent<SpriteRenderer>();
+        if (Draws[0].GetType() == typeof(AttackCard))
+            cardSpriteRenderer.sprite = CardBgs[0];
+        else if (Draws[0].GetType() == typeof(BuffCard))
+            cardSpriteRenderer.sprite = CardBgs[1];
+        else if (Draws[0].GetType() == typeof(HealingCard))
+            cardSpriteRenderer.sprite = CardBgs[2];
+        else if (Draws[0].GetType() == typeof(SummonCard))
+            cardSpriteRenderer.sprite = CardBgs[3];
+        else
+            throw new ArgumentException("Invalid card: " + Draws[0].GetType().FullName);
+        
         cardMb.Init(Draws[0], new Vector2(HandMB.CalculatePos(Hand.Count), 1.5f));
         Hand.Add(cardMb);
 
