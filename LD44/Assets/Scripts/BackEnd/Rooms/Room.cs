@@ -1,11 +1,6 @@
-﻿using System;
-
-public class Room
+﻿public abstract class Room
 {
     public static Room CurrentRoom;
-    
-    public virtual void Enter()
-    {
-        
-    }
+
+    public abstract void Enter();
 }

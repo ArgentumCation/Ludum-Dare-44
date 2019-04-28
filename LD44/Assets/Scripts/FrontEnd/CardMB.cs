@@ -1,20 +1,25 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CardMB : MonoBehaviour
 {
     public static List<Sprite> CardBgs = new List<Sprite>();
+    
+    private bool _dragging;
+    
+    private Vector3 _targetPos;
+    private const float SlideSpeed = 15;
 
     public Card MeCard;
-    private Vector3 _targetPos;
-    private bool _dragging;
 
     public void Init(Card c, Vector2 pos)
     {
         MeCard = c;
         transform.position = pos;
         _targetPos = pos;
+        name = "Card";
     }
 
     private void Update()
@@ -23,9 +28,10 @@ public class CardMB : MonoBehaviour
         {
             Vector3 mouseScreenPos = CameraMB.MainCamera.ScreenToWorldPoint(Input.mousePosition);
             transform.position = new Vector3(mouseScreenPos.x, mouseScreenPos.y, -2);
+            return;
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, _targetPos, 1f);
+        transform.position = Vector3.MoveTowards(transform.position, _targetPos, SlideSpeed * Time.deltaTime);
     }
 
     private void OnMouseDown()
@@ -65,10 +71,12 @@ public class CardMB : MonoBehaviour
     {
         GameObject cardObject = new GameObject();
         cardObject.transform.localScale = new Vector2(0.25f, 0.25f);
+
         CardMB cardMb = cardObject.AddComponent<CardMB>();
         SpriteRenderer cardSpriteRenderer = cardObject.AddComponent<SpriteRenderer>();
         BoxCollider2D boxCollider2D = cardObject.AddComponent<BoxCollider2D>();
         boxCollider2D.size = new Vector2(8, 10);
+
         switch (c.GetCardType())
         {
             case CardType.AttackCard:
@@ -86,6 +94,19 @@ public class CardMB : MonoBehaviour
             default:
                 throw new ArgumentException("Invalid card: " + c.GetType().FullName);
         }
+
+        GameObject textObject = new GameObject("Text");
+        textObject.transform.parent = cardObject.transform;
+        textObject.transform.position = new Vector3(-2.5f, -1, -0.1f);
+        TextMeshPro text = textObject.AddComponent<TextMeshPro>();
+        RectTransform rect = textObject.GetComponent<RectTransform>();
+        text.fontSize = 5;
+        text.color = Color.black;
+        rect.localScale = Vector3.one;
+        rect.localPosition = new Vector3(0, -2.4f, 0);
+        rect.sizeDelta = new Vector2(5.25f, 3f);
+        string[] textLines = c.Description.Split('\n');
+        text.text = string.Format("<b>{0}</b>\n<i>{1}</i>\n{2}", textLines);
 
         cardMb.Init(c, new Vector2(HandMB.CalculatePos(Deck.Hand.Count), 1.5f));
 

@@ -4,9 +4,9 @@ using UnityEngine;
 public class Bootstrap : MonoBehaviour
 {
     public List<Sprite> CardBgs;
-    public GameObject RoomPrefab;
     public GameObject EntityPrefab;
-    
+    public GameObject RoomPrefab;
+
     private void Start()
     {
         CardMB.CardBgs = CardBgs;
@@ -21,7 +21,7 @@ public class Bootstrap : MonoBehaviour
             new TestCard(),
             new BuffCard()
         };
-        
+
         GameObject g = new GameObject();
         RoomMB r = g.AddComponent<RoomMB>();
         RoomMB.ActiveRoom = r;

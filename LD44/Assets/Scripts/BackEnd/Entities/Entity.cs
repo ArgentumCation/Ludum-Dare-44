@@ -1,25 +1,24 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 
-public class Entity
+public abstract class Entity
 {
-    // whether or not entity or friendly
-    public bool IsFriendly;
+    // Current buffs on entity
+    public List<Buff> Buffs;
 
     // entity health remaining
     public int CurrentHealth;
 
+    // whether or not entity or friendly
+    public bool IsFriendly;
+
     // max entity health
     public int MaxHealth;
-
-    // Current buffs on entity
-    public List<Buff> Buffs;
 
     public Entity()
     {
         CurrentHealth = MaxHealth;
     }
-    
+
     // kills entity
     public virtual void Die()
     {

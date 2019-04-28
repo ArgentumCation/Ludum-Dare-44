@@ -21,9 +21,10 @@ public class BattleActionManager
             return;
 
         _activeCard = null;
+        _targets.Clear();
         State = BattleActionState.SelectCard;
     }
-    
+
     public static void Click(CardMB cardMb)
     {
         if (State != BattleActionState.SelectCard)
@@ -37,7 +38,7 @@ public class BattleActionManager
     {
         if (State != BattleActionState.SelectTargets || _activeCard == null)
             return;
-        
+
         _targets.Add(entity);
 
         if (_activeCard.MeCard.NumTargets < _targets.Count)
@@ -47,16 +48,18 @@ public class BattleActionManager
         if (_activeCard.MeCard.NumTargets > _targets.Count)
         {
             Debug.Log("Too many targets! Card: " + _activeCard.GetType().FullName);
-            _activeCard.MeCard.Cast(_targets.Take(_activeCard.MeCard.NumTargets));
+            _activeCard.MeCard.Cast(_targets.Take(_activeCard.MeCard.NumTargets).ToList());
         }
         else if (_activeCard.MeCard.NumTargets == _targets.Count)
         {
             _activeCard.MeCard.Cast(_targets);
         }
+
         Deck.Discards.Add(_activeCard.MeCard);
         _activeCard.DestroyCard();
         _activeCard = null;
         _targets.Clear();
+        Deck.DrawCard();
         State = BattleActionState.SelectCard;
     }
 }

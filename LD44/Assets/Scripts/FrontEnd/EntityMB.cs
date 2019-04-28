@@ -2,10 +2,10 @@
 
 public class EntityMB : MonoBehaviour
 {
-    public MeshRenderer HealthBar;
-    private Entity _meEntity;
     private static readonly int Charge = Shader.PropertyToID("_Charge");
     public static GameObject EntityPrefab;
+    private Entity _meEntity;
+    public MeshRenderer HealthBar;
 
     public void Init(Entity e)
     {
@@ -16,8 +16,10 @@ public class EntityMB : MonoBehaviour
     {
         if (_meEntity == null)
             return;
-        
-        HealthBar.material.SetFloat(Charge, ((float) _meEntity.CurrentHealth) / _meEntity.MaxHealth);
+
+        float currentHealthFrac = (float) _meEntity.CurrentHealth / _meEntity.MaxHealth;
+        HealthBar.material.SetFloat(Charge, currentHealthFrac);
+        if (_meEntity.CurrentHealth <= 0) Destroy(gameObject);
     }
 
     private void OnMouseUp()
