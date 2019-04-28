@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class Player : Entity
 {
@@ -17,6 +18,7 @@ public class Player : Entity
 
         MaxHealth = 30;
         CurrentHealth = MaxHealth;
+        EntityArt = Resources.Load<Sprite>("EntityArt/player");
 
         Team = new List<Entity> {this};
         Buffs = new List<Buff>();

@@ -32,12 +32,14 @@ public class Bootstrap : MonoBehaviour
             new LesserHealing(),
             new RoundhouseKick(),
             new Punch()
-        
         };
 
-        GameObject g = new GameObject();
-        RoomMB r = g.AddComponent<RoomMB>();
-        RoomMB.ActiveRoom = r;
-        r.Init(new BattleRoom(), RoomType.BattleRoom);
+        Deck.Shuffle(Deck.Draws);
+
+        Deck.DrawCard();
+        Deck.DrawCard();
+        Deck.DrawCard();
+        
+        RoomGenerator.GenerateRoom();
     }
 }

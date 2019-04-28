@@ -11,6 +11,9 @@ public class EntityMB : MonoBehaviour
     {
         _meEntity = e;
         GetComponentInChildren<SpriteRenderer>().sprite = e.EntityArt;
+        
+        float currentHealthFrac = (float) _meEntity.CurrentHealth / _meEntity.MaxHealth;
+        HealthBar.material.SetFloat(Charge, currentHealthFrac);
     }
 
     private void Update()
@@ -20,7 +23,11 @@ public class EntityMB : MonoBehaviour
 
         float currentHealthFrac = (float) _meEntity.CurrentHealth / _meEntity.MaxHealth;
         HealthBar.material.SetFloat(Charge, currentHealthFrac);
-        if (_meEntity.CurrentHealth <= 0) Destroy(gameObject);
+        if (_meEntity.CurrentHealth <= 0)
+        {
+            _meEntity.Die();
+            Destroy(gameObject);
+        }
     }
 
     private void OnMouseUp()

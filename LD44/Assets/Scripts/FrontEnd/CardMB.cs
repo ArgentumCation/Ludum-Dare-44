@@ -37,6 +37,7 @@ public class CardMB : MonoBehaviour
     private void OnMouseDown()
     {
         _dragging = true;
+        transform.localScale = new Vector2(0.5f, 0.5f);
         Deck.Hand.Remove(this);
     }
 
@@ -47,7 +48,6 @@ public class CardMB : MonoBehaviour
         {
             BattleActionManager.Click(this);
             _targetPos = new Vector3(8, 3, -0.5f);
-            transform.localScale = new Vector2(0.5f, 0.5f);
         }
         else
         {
@@ -100,7 +100,7 @@ public class CardMB : MonoBehaviour
         textObject.transform.position = new Vector3(-2.5f, -1, -0.1f);
         TextMeshPro text = textObject.AddComponent<TextMeshPro>();
         RectTransform rect = textObject.GetComponent<RectTransform>();
-        text.fontSize = 5;
+        text.fontSize = 4;
         text.color = Color.black;
         rect.localScale = Vector3.one;
         rect.localPosition = new Vector3(0, -2.4f, 0);

@@ -6,6 +6,6 @@
 
     public void Exit()
     {
-        // TODO
+        RoomGenerator.GenerateRoom();
     }
 }

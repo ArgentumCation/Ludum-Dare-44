@@ -17,7 +17,7 @@ public class BattleRoom : Room
         int n = Random.Range(1, 4);
         for (int i = 0; i < n; i++)
         {
-            Entity e = (Entity) Activator.CreateInstance(EnemyList.GetRandomEntity());
+            Entity e = (Entity) Activator.CreateInstance(EnemyList.GetRandomEnemy());
             Enemies.Add(e);
             GameObject entityObject = Object.Instantiate(EntityMB.EntityPrefab, RoomMB.ActiveRoom.transform);
             EntityMB entityMb = entityObject.GetComponent<EntityMB>();

@@ -6,6 +6,6 @@ public class TestEnemy : Entity
     {
         MaxHealth = 10;
         CurrentHealth = MaxHealth;
-        EntityArt = Resources.Load<Sprite>("EntityArt/testsprite");
+        EntityArt = Resources.Load<Sprite>("EntityArt/furry_canine_01");
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 public abstract class Entity
 {
     // Current buffs on entity
-    public List<Buff> Buffs;
+    public List<Buff> Buffs = new List<Buff>();
 
     // entity health remaining
     private int _currentHealth;

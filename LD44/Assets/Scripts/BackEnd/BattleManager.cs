@@ -14,10 +14,6 @@ public class BattleManager
 
         Friendlies = friendlies;
         Enemies = enemies;
-
-        Deck.DrawCard();
-        Deck.DrawCard();
-        Deck.DrawCard();
     }
 
     public void Die(Entity e)

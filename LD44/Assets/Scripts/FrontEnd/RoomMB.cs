@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class RoomMB : MonoBehaviour
 {
-    private const float ScrollSpeed = 8;
+    private const float ScrollSpeed = 4;
     public static GameObject RoomPrefab;
     public static RoomMB ActiveRoom;
 
@@ -19,24 +19,24 @@ public class RoomMB : MonoBehaviour
         name = "Room";
     }
 
-    public void Init(Room r, RoomType t)
+    public void Init(RoomType t)
     {
-        _meRoom = r;
+        ActiveRoom = this;
         _meType = t;
-    }
-
-    public void Init(Room r)
-    {
-        _meRoom = r;
-
-        if (r.GetType() == typeof(BattleRoom))
-            _meType = RoomType.BattleRoom;
-        else if (r.GetType() == typeof(ArtifactRoom))
-            _meType = RoomType.ArtifactRoom;
-        else if (r.GetType() == typeof(FountainRoom))
-            _meType = RoomType.FountainRoom;
-        else
-            throw new ArgumentException("Unknown Room: " + r.GetType().FullName);
+        switch (t)
+        {
+            case RoomType.BattleRoom:
+                _meRoom = new BattleRoom();
+                break;
+            case RoomType.ArtifactRoom:
+                _meRoom = new ArtifactRoom();
+                break;
+            case RoomType.FountainRoom:
+                _meRoom = new FountainRoom();
+                break;
+            default:
+                throw new Exception("How could this have happened?");
+        }
     }
 
     public void Exit()

@@ -8,7 +8,7 @@ public class EnemyList
         typeof(TestEnemy)
     };
 
-    public static Type GetRandomEntity()
+    public static Type GetRandomEnemy()
     {
         return Enemies[Random.Range(0, Enemies.Length - 1)];
     }
