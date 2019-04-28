@@ -16,8 +16,13 @@ public class EntityMB : MonoBehaviour
     {
         if (_meEntity == null)
             return;
-        
-        HealthBar.material.SetFloat(Charge, ((float) _meEntity.CurrentHealth) / _meEntity.MaxHealth);
+
+        float currentHealthFrac = ((float) _meEntity.CurrentHealth) / _meEntity.MaxHealth;
+        HealthBar.material.SetFloat(Charge, currentHealthFrac);
+        if (_meEntity.CurrentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnMouseUp()

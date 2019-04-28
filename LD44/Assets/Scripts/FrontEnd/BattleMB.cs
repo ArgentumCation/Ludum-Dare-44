@@ -4,7 +4,12 @@ using UnityEngine;
 public class BattleMB : MonoBehaviour
 {
     private BattleManager _battleManager;
-    
+
+    private void Start()
+    {
+        name = "Battle";
+    }
+
     public void Init(List<Entity> enemies)
     {
         _battleManager = new BattleManager(Player.Team, enemies);

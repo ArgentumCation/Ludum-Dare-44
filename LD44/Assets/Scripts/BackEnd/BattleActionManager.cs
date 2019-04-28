@@ -21,6 +21,7 @@ public class BattleActionManager
             return;
 
         _activeCard = null;
+        _targets.Clear();
         State = BattleActionState.SelectCard;
     }
     
@@ -57,6 +58,7 @@ public class BattleActionManager
         _activeCard.DestroyCard();
         _activeCard = null;
         _targets.Clear();
+        Deck.DrawCard();
         State = BattleActionState.SelectCard;
     }
 }

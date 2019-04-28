@@ -8,7 +8,7 @@ public class SummonCard : Card
     public SummonCard()
     {
         NumTargets = 0;
-        CanTargetFriendly = false;
+        Description = "Summon Card\n0 HP\nDoes nothing.";
     }
 
     // Casts the card effect;

@@ -6,6 +6,11 @@ public class HealingCard : Card
     // Damage card will deal, should be negative to heal.
     public int AttackDamage;
 
+    public HealingCard()
+    {
+        Description = "Healing Card\n0 HP\nDoes nothing.";
+    }
+
     // Casts the card effect on all targets.
     public override void Cast(IEnumerable<Entity> targets)
     {

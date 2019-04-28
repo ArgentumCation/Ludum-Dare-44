@@ -7,7 +7,7 @@ public class BuffCard : Card
 
     public BuffCard()
     {
-        
+        Description = "Buff Card\n0 HP\nDoes nothing.";
     }
 
     // Casts the card effect
