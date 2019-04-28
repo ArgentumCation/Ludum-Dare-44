@@ -1,0 +1,12 @@
+﻿using System;
+
+public class HammerThrust
+{
+	public HammerThrust()
+	{
+        NumTargets = 1;
+        AttackDamage = 5;
+        HealthCost = 2;
+        Description = "Hammer Thrust\n2 HP\nDeal 5 damage to a single target.";
+    }
+}
