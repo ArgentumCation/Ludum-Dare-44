@@ -3,13 +3,11 @@ using UnityEngine;
 public class HandMB : MonoBehaviour
 {
     private const float CardWidth = 2.2f;
-    
+
     private void Update()
     {
         for (int i = 0; i < Deck.Hand.Count; i++)
-        {
             Deck.Hand[i].SetTargetPos(new Vector2(CalculatePos(i), 1.5f));
-        }
     }
 
     public static float CalculatePos(int index)

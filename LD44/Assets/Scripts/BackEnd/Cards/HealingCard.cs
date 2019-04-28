@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 public class HealingCard : Card
 {
@@ -20,9 +19,7 @@ public class HealingCard : Card
             p.TakeCastDamage(HealthCost);
 
             foreach (Entity target in targets)
-            {
                 target.TakeHitDamage(HealingValue());
-            }
         }
     }
 

@@ -6,11 +6,13 @@ using UnityEngine;
 public class CardMB : MonoBehaviour
 {
     public static List<Sprite> CardBgs = new List<Sprite>();
+    
+    private bool _dragging;
+    
+    private Vector3 _targetPos;
+    private const float SlideSpeed = 15;
 
     public Card MeCard;
-    private Vector3 _targetPos;
-    private bool _dragging;
-    private const float SlideSpeed = 15;
 
     public void Init(Card c, Vector2 pos)
     {
@@ -69,12 +71,12 @@ public class CardMB : MonoBehaviour
     {
         GameObject cardObject = new GameObject();
         cardObject.transform.localScale = new Vector2(0.25f, 0.25f);
-        
+
         CardMB cardMb = cardObject.AddComponent<CardMB>();
         SpriteRenderer cardSpriteRenderer = cardObject.AddComponent<SpriteRenderer>();
         BoxCollider2D boxCollider2D = cardObject.AddComponent<BoxCollider2D>();
         boxCollider2D.size = new Vector2(8, 10);
-        
+
         switch (c.GetCardType())
         {
             case CardType.AttackCard:

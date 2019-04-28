@@ -2,8 +2,8 @@
 
 public class ArtifactRoom : Room
 {
-	public override void Enter()
-	{
-		throw new NotImplementedException();
-	}
+    public override void Enter()
+    {
+        throw new NotImplementedException();
+    }
 }

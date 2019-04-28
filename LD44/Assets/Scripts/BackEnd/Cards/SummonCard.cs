@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class SummonCard : Card
 {
     private Type _spawnedEntity;
-    
+
     public SummonCard()
     {
         NumTargets = 0;
@@ -20,7 +20,6 @@ public class SummonCard : Card
             p.TakeCastDamage(HealthCost);
             Player.Team.Add((Entity) Activator.CreateInstance(_spawnedEntity));
         }
-
     }
 
     public override CardType GetCardType()

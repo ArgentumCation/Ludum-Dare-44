@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
 
 public class AttackCard : Card
 {
@@ -11,7 +9,7 @@ public class AttackCard : Card
     {
         Description = "Attack Card\n0 HP\nDoes nothing.";
     }
-    
+
     // Casts the card effect on all targets
     public override void Cast(List<Entity> targets)
     {
@@ -21,12 +19,10 @@ public class AttackCard : Card
             p.TakeCastDamage(HealthCost);
 
             foreach (Entity target in targets)
-            {
                 target.TakeHitDamage(DamageValue());
-            }
         }
     }
-    
+
     // returns card attack damage
     protected virtual int DamageValue()
     {

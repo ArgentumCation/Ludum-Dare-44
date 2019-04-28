@@ -24,7 +24,7 @@ public class BattleActionManager
         _targets.Clear();
         State = BattleActionState.SelectCard;
     }
-    
+
     public static void Click(CardMB cardMb)
     {
         if (State != BattleActionState.SelectCard)
@@ -38,7 +38,7 @@ public class BattleActionManager
     {
         if (State != BattleActionState.SelectTargets || _activeCard == null)
             return;
-        
+
         _targets.Add(entity);
 
         if (_activeCard.MeCard.NumTargets < _targets.Count)
@@ -54,6 +54,7 @@ public class BattleActionManager
         {
             _activeCard.MeCard.Cast(_targets);
         }
+
         Deck.Discards.Add(_activeCard.MeCard);
         _activeCard.DestroyCard();
         _activeCard = null;

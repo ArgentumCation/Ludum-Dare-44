@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
 using Random = UnityEngine.Random;
 
 public class Deck
@@ -13,7 +13,7 @@ public class Deck
     public static void DrawCard()
     {
         // if Draws empty, shuffle discard and put into Draws
-        if(Draws.Count == 0)
+        if (Draws.Count == 0)
         {
             Shuffle(Discards);
             Draws = Discards;
@@ -28,9 +28,7 @@ public class Deck
     public static void Discard(CardMB cardMb)
     {
         if (!Hand.Contains(cardMb))
-        {
-            throw new System.Exception("Card isnt able to be discarded");
-        }
+            throw new Exception("Card isnt able to be discarded");
 
         Hand.Remove(cardMb);
         Discards.Add(cardMb.MeCard);
@@ -40,13 +38,12 @@ public class Deck
     {
         float cardMbX = cardMb.transform.position.x;
         for (int i = 0; i < Hand.Count; i++)
-        {
             if (cardMbX < HandMB.CalculatePos(i))
             {
                 Hand.Insert(i, cardMb);
                 return;
             }
-        }
+
         Hand.Add(cardMb);
     }
 
