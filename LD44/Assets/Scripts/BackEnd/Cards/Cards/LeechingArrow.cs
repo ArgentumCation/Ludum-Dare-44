@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class LeechingArrow : AttackCard
 {
@@ -8,6 +9,7 @@ public class LeechingArrow : AttackCard
         AttackDamage = 2;
         HealthCost = 2;
         Description = "Leeching Arrow\n2 HP\nDeal 2 damage, heal 4 damage.";
+        CardArt = Resources.Load<Sprite>("CardArt/leeching_arrow");
     }
 
     // Casts the card effect on a single target

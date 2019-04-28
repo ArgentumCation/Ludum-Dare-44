@@ -4,15 +4,15 @@ public class BloodBeam : AttackCard
 {
 	public BloodBeam()
 	{
-        NumTargets = 3;
-        AttackDamage = 2;
+        AttackDamage = 5;
         HealthCost = 4;
-        Description = "Blood Beam\n4 HP\nDeal 2 damage to all enemies.";
+        Description = "Blood Beam\n4 HP\nDeal 5 damage to all enemies.";
     }
 
     // Casts the card effect on all enemies
-    public override void Cast(List<Entity> enemies)
+    public override void Cast(List<Entity> targets)
     {
+        List<Entity> enemies = BattleManager.BattleManagerRef.Enemies;
         Player P = Player.PlayerRef;
         if (P.CanCast(this))
         {

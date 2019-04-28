@@ -1,4 +1,6 @@
-﻿public class HammerThrust : AttackCard
+﻿using UnityEngine;
+
+public class HammerThrust : AttackCard
 {
 	public HammerThrust()
 	{
@@ -6,5 +8,6 @@
         AttackDamage = 5;
         HealthCost = 2;
         Description = "Blood Hammer\n2 HP\nDeal 5 damage to a single target.";
+        CardArt = Resources.Load<Sprite>("CardArt/hammerthrust");
     }
 }

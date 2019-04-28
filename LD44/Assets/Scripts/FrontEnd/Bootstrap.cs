@@ -22,7 +22,10 @@ public class Bootstrap : MonoBehaviour
             new BuffCard(),
             //new ComboStrike()
             new HealingBeam(),
-            new Jab()
+            new Jab(),
+            new HammerThrust(),
+            new Punch(),
+            new BloodBeam()
         };
 
         GameObject g = new GameObject();
