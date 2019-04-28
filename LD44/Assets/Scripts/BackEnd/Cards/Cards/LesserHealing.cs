@@ -5,7 +5,7 @@
         NumTargets = 1;
         AttackDamage = -2;
         HealthCost = 0;
-        Description = "Lesser Healing\n0 HP\nHeal 2 HP to a single friendly target";
+        Description = "Small Blood Transfusion\n0 HP\nHeal 2 HP to a single friendly target";
 
     }
 

@@ -7,6 +7,6 @@ public class DoubleStrike : AttackCard
         NumTargets = 2;
         AttackDamage = 4;
         HealthCost = 3;
-        Description = "Double Strike\n3 HP\nDeal 4 damage to 2 targets.";
+        Description = "Bloody Rampage\n3 HP\nDeal 4 damage to 2 targets.";
     }
 }
