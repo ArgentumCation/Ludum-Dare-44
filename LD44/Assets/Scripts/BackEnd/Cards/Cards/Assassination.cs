@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
 public class Assassination : AttackCard
 {
@@ -11,10 +11,9 @@ public class Assassination : AttackCard
     }
 
     // Casts the card effect on an enemy with 25% or less health
-    public override void Cast(IEnumerable<Entity> targets)
+    public override void Cast(List<Entity> enemies)
     {
         Player P = Player.PlayerRef;
-        List<Entity> enemies = targets.ToList();
         if (enemies.Count == 1 && enemies[0].CurrentHealth <= enemies[0].MaxHealth/4 - 1 && P.CanCast(this))
         {
             P.TakeCastDamage(HealthCost);

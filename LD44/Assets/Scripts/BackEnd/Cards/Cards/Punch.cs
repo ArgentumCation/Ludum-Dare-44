@@ -1,6 +1,4 @@
-﻿using System;
-
-public class Punch : AttackCard
+﻿public class Punch : AttackCard
 {
     public Punch()
     {

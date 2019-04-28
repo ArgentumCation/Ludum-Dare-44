@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 public class ComboHeal : HealingCard
 {
@@ -12,7 +11,7 @@ public class ComboHeal : HealingCard
     }
 
     // Casts the card effect on the player
-    public override void Cast(IEnumerable<Entity> targets)
+    public override void Cast(List<Entity> targets)
     {
         Player P = Player.PlayerRef;
         if (P.CanCast(this))

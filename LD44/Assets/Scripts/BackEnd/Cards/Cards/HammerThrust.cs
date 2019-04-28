@@ -1,6 +1,4 @@
-﻿using System;
-
-public class HammerThrust
+﻿public class HammerThrust : AttackCard
 {
 	public HammerThrust()
 	{

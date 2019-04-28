@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
 public class HealingCyclone : HealingCard
 {
@@ -7,19 +7,18 @@ public class HealingCyclone : HealingCard
         NumTargets = 0;
         AttackDamage = -10;
         HealthCost = 10;
-        CanTargetFriendly = true;
         Description = "Healing Cyclone\n3 HP\nHeal 10 to all friendly allies";
     }
 
 
     // Casts the card effect on all friendly allies
-    public override void Cast(IEnumerable<Entity> targets)
+    public override void Cast(List<Entity> targets)
     {
         Player P = Player.PlayerRef;
-        List<Entity> Friendlies = BattleManager.BattleManagerRef.Friendlies;
-        if (P.CanCast(this) && Friendlies.Count > 1)
+        List<Entity> friendlies = BattleManager.BattleManagerRef.Friendlies;
+        if (P.CanCast(this) && friendlies.Count > 1)
         {
-            foreach (Entity target in Friendlies)
+            foreach (Entity target in friendlies)
             {
                 if (target != P)
                 {

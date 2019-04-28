@@ -1,6 +1,6 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
-public class Grindstone
+public class Grindstone : BuffCard
 {
     public Grindstone()
     {

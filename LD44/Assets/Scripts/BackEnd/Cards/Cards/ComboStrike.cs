@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 public class ComboStrike : AttackCard
 {
@@ -13,10 +12,9 @@ public class ComboStrike : AttackCard
     }
 
     // Casts the card effect on a single enemy, twice if enemy still has 50% health
-    public override void Cast(IEnumerable<Entity> targets)
+    public override void Cast(List<Entity> enemies)
     {
         Player P = Player.PlayerRef;
-        List<Entity> enemies = targets.ToList();
         if (enemies.Count == 1 && P.CanCast(this))
         {
             P.TakeCastDamage(HealthCost);

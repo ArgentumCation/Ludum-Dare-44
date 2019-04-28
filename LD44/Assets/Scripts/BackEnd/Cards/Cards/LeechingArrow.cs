@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 public class LeechingArrow : AttackCard
 {
@@ -12,15 +11,14 @@ public class LeechingArrow : AttackCard
     }
 
     // Casts the card effect on a single target
-    public override void Cast(IEnumerable<Entity> targets)
+    public override void Cast(List<Entity> enemies)
     {
         Player P = Player.PlayerRef;
-        List<Entity> enemies = targets.ToList();
         if (enemies.Count == 1 && P.CanCast(this))
         {
             P.TakeCastDamage(HealthCost);
             enemies[0].TakeHitDamage(AttackDamage);
-            P.HitDamage(-1 * AttackDamage);
+            P.TakeHitDamage(-1 * AttackDamage);
         }
     }
 }

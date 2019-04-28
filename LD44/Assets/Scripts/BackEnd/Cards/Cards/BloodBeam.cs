@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 public class BloodBeam : AttackCard
 {
@@ -12,16 +11,15 @@ public class BloodBeam : AttackCard
     }
 
     // Casts the card effect on all enemies
-    public override void Cast(IEnumerable<Entity> targets)
+    public override void Cast(List<Entity> enemies)
     {
         Player P = Player.PlayerRef;
-        List<Entity> Enemies = BattleManager.BattleManagerRef.Enemies;
         if (P.CanCast(this))
         {
             P.TakeCastDamage(HealthCost);
-            foreach (Entity Enemy in Enemies)
+            foreach (Entity enemy in enemies)
             {
-                Enemy.TakeHitDamage(AttackDamage);
+                enemy.TakeHitDamage(AttackDamage);
             }
         }
     }
