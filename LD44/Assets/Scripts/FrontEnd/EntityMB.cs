@@ -10,6 +10,7 @@ public class EntityMB : MonoBehaviour
     public void Init(Entity e)
     {
         _meEntity = e;
+        GetComponentInChildren<SpriteRenderer>().sprite = e.EntityArt;
     }
 
     private void Update()
