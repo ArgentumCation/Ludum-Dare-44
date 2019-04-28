@@ -3,7 +3,7 @@
 public class AttackCard : Card
 {
     // Damage card will deal, should be negative to heal.
-    public int AttackDamage;
+    protected int AttackDamage;
 
     public AttackCard()
     {

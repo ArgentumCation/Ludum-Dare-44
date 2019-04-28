@@ -39,8 +39,9 @@ public class RoomMB : MonoBehaviour
             throw new ArgumentException("Unknown Room: " + r.GetType().FullName);
     }
 
-    public void ScrollOut()
+    public void Exit()
     {
+        _meRoom.Exit();
         _scrolling = 1;
     }
 

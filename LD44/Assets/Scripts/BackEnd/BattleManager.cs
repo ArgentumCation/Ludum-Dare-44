@@ -31,12 +31,13 @@ public class BattleManager
         {
             if (Enemies.Count == 0)
             {
-                // TODO next room
+                RoomMB.ActiveRoom.Exit();
             }
 
             return;
         }
 
         Friendlies.Remove(e);
+        TeamMB.TeamRef.TeamUpdated();
     }
 }

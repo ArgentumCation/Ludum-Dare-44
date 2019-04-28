@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public abstract class Card
 {
@@ -9,6 +10,8 @@ public abstract class Card
 
     // Amount of entities card can target
     public int NumTargets = 1;
+
+    public Sprite CardArt;
 
     // Casts the card effect;
     public abstract void Cast(List<Entity> targets);
