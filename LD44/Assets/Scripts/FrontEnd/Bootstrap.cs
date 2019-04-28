@@ -20,12 +20,19 @@ public class Bootstrap : MonoBehaviour
             //new TestCard(),
             //new TestCard(),
             new BuffCard(),
-            //new ComboStrike()
+            new ComboStrike(),
             new HealingBeam(),
             new Jab(),
             new HammerThrust(),
             new Punch(),
-            new BloodBeam()
+            new BloodBeam(),
+            new Assassination(),
+            new DoubleStrike(),
+            new LeechingArrow(),
+            new LesserHealing(),
+            new RoundhouseKick(),
+            new Punch()
+        
         };
 
         GameObject g = new GameObject();
