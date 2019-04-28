@@ -38,3 +38,6 @@ sysinfo.txt
 
 # Intellij
 .idea/
+
+# Krita
+*.kra~
