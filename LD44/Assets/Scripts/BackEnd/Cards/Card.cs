@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-public class Card
+public abstract class Card
 {
     // Health player will lose or gain after casting
-    public int HealthCost;
+    public int HealthCost = 0;
 
     // Amount of entities card can target
-    public int NumTargets;
+    public int NumTargets = 1;
 
-    public string Description;
+    public string Description = "Card\n0 HP\nDoes nothing.";
 
     // Casts the card effect;
-    public virtual void Cast(IEnumerable<Entity> targets)
-    {
-    }
+    public abstract void Cast(List<Entity> targets);
 
-    public virtual CardType GetCardType()
-    {
-        throw new NotImplementedException("Called Card.CardType instead of on a subclass'");
-    }
+    public abstract CardType GetCardType();
 }

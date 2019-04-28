@@ -20,6 +20,7 @@ public class Player : Entity
         CurrentHealth = MaxHealth;
         
         Team = new List<Entity> { this };
+        Buffs = new List<Buff>();
     }
 
     public bool CanCast(Card c)

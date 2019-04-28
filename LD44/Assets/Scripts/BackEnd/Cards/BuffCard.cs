@@ -2,21 +2,18 @@
 
 public class BuffCard : Card
 {
-    // Health player will lose or gain after casting
-    public int HealthCost;
-
     public BuffCard()
     {
         Description = "Buff Card\n0 HP\nDoes nothing.";
     }
 
     // Casts the card effect
-    public override void Cast(IEnumerable<Entity> targets)
+    public override void Cast(List<Entity> targets)
     {
         Player p = Player.PlayerRef;
         if (p.CanCast(this))
         {
-            p.Buffs.Add(new Buff());
+            targets[0].Buffs.Add(new Buff(BuffType.AttackBuff, 0));
             p.TakeCastDamage(HealthCost);
         }
     }

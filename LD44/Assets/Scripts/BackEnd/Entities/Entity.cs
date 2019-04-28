@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Entity
+public abstract class Entity
 {
     // whether or not entity or friendly
     public bool IsFriendly;

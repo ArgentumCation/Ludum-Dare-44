@@ -12,7 +12,7 @@ public class SummonCard : Card
     }
 
     // Casts the card effect;
-    public override void Cast(IEnumerable<Entity> targets)
+    public override void Cast(List<Entity> targets)
     {
         Player p = Player.PlayerRef;
         if (p.CanCast(this))

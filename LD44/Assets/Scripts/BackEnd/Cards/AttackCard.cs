@@ -13,16 +13,14 @@ public class AttackCard : Card
     }
     
     // Casts the card effect on all targets
-    public override void Cast(IEnumerable<Entity> targets)
+    public override void Cast(List<Entity> targets)
     {
-        List<Entity> targetList = targets.ToList();
-        
         Player p = Player.PlayerRef;
-        if (p.CanCast(this) && targetList.Count == NumTargets)
+        if (p.CanCast(this) && targets.Count == NumTargets)
         {
             p.TakeCastDamage(HealthCost);
 
-            foreach (Entity target in targetList)
+            foreach (Entity target in targets)
             {
                 target.TakeHitDamage(DamageValue());
             }
