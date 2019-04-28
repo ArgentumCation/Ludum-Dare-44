@@ -17,9 +17,12 @@ public class Bootstrap : MonoBehaviour
 
         Deck.Draws = new List<Card>
         {
-            new TestCard(),
-            new TestCard(),
-            new BuffCard()
+            //new TestCard(),
+            //new TestCard(),
+            new BuffCard(),
+            //new ComboStrike()
+            new HealingBeam(),
+            new Jab()
         };
 
         GameObject g = new GameObject();
