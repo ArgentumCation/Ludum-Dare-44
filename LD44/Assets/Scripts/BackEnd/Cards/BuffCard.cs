@@ -2,6 +2,8 @@
 
 public class BuffCard : Card
 {
+    protected Buff MyBuff;
+
     public BuffCard()
     {
         Description = "Buff Card\n0 HP\nDoes nothing.";
@@ -13,7 +15,7 @@ public class BuffCard : Card
         Player p = Player.PlayerRef;
         if (p.CanCast(this))
         {
-            targets[0].Buffs.Add(new Buff(BuffType.AttackBuff, 0));
+            targets[0].Buffs.Add(GetBuff());
             p.TakeCastDamage(HealthCost);
         }
     }
@@ -21,5 +23,10 @@ public class BuffCard : Card
     public override CardType GetCardType()
     {
         return CardType.BuffCard;
+    }
+
+    protected virtual Buff GetBuff()
+    {
+        return MyBuff;
     }
 }
