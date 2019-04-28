@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Entity
 {
@@ -13,18 +14,21 @@ public class Entity
 
     // Current buffs on entity
     public List<Buff> Buffs;
+
+    public Entity()
+    {
+        CurrentHealth = MaxHealth;
+    }
     
     // kills entity
     public virtual void Die()
     {
-
+        BattleManager.BattleManagerRef.Die(this);
     }
 
     // changes entity health
-    public virtual void Damage(int damage)
+    public virtual void TakeHitDamage(int damage)
     {
         CurrentHealth -= damage;
     }
-
-
 }

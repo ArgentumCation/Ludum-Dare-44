@@ -17,7 +17,12 @@ public class BuffCard : Card
         if (p.CanCast(this))
         {
             p.Buffs.Add(new Buff());
-            p.Damage(HealthCost);
+            p.TakeCastDamage(HealthCost);
         }
+    }
+
+    public override CardType GetCardType()
+    {
+        return CardType.BuffCard;
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class BattleActionManager
 {
     public static BattleActionState State;
-    private static Card _activeCard;
+    private static CardMB _activeCard;
     private static List<Entity> _targets = new List<Entity>();
 
     public static void Init()
@@ -24,12 +24,12 @@ public class BattleActionManager
         State = BattleActionState.SelectCard;
     }
     
-    public static void Click(Card card)
+    public static void Click(CardMB cardMb)
     {
         if (State != BattleActionState.SelectCard)
             return;
 
-        _activeCard = card;
+        _activeCard = cardMb;
         State = BattleActionState.SelectTargets;
     }
 
@@ -40,20 +40,23 @@ public class BattleActionManager
         
         _targets.Add(entity);
 
-        if (_activeCard.NumTargets < _targets.Count)
+        if (_activeCard.MeCard.NumTargets < _targets.Count)
             return;
 
-        if (_activeCard.NumTargets > _targets.Count)
+        State = BattleActionState.HandleTurn;
+        if (_activeCard.MeCard.NumTargets > _targets.Count)
         {
             Debug.Log("Too many targets! Card: " + _activeCard.GetType().FullName);
-            _activeCard.Cast(_targets.Take(_activeCard.NumTargets));
+            _activeCard.MeCard.Cast(_targets.Take(_activeCard.MeCard.NumTargets));
         }
-        else if (_activeCard.NumTargets == _targets.Count)
+        else if (_activeCard.MeCard.NumTargets == _targets.Count)
         {
-            _activeCard.Cast(_targets);
+            _activeCard.MeCard.Cast(_targets);
         }
+        Deck.Discards.Add(_activeCard.MeCard);
+        _activeCard.DestroyCard();
         _activeCard = null;
         _targets.Clear();
-        State = BattleActionState.HandleTurn;
+        State = BattleActionState.SelectCard;
     }
 }

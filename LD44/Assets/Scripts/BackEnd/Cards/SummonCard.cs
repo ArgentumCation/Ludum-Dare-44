@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 public class SummonCard : Card
 {
+    private Type _spawnedEntity;
+    
     public SummonCard()
     {
         NumTargets = 0;
@@ -14,14 +17,14 @@ public class SummonCard : Card
         Player p = Player.PlayerRef;
         if (p.CanCast(this))
         {
-            p.Damage(HealthCost);
-            Player.Team.Add(new Friendly());
+            p.TakeCastDamage(HealthCost);
+            Player.Team.Add((Entity) Activator.CreateInstance(_spawnedEntity));
         }
 
     }
 
-    protected virtual int HealAmount()
+    public override CardType GetCardType()
     {
-        return 0;
+        return CardType.SummonCard;
     }
 }

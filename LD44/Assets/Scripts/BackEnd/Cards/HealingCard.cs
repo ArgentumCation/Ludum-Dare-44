@@ -3,17 +3,6 @@ using System.Linq;
 
 public class HealingCard : Card
 {
-    // Start is called before the first frame update
-
-    // Health player will lose or gain after casting
-    public int HealthCost;
-
-    // Whether or not card can traget friendly entities
-    public bool CanTragetFriendly;
-
-    // Amount of entities card can target
-    public int NumTargets;
-
     // Damage card will deal, should be negative to heal.
     public int AttackDamage;
 
@@ -22,11 +11,14 @@ public class HealingCard : Card
     {
         List<Entity> targetList = targets.ToList();
 
-        if (targetList.Count == NumTargets)
+        Player p = Player.PlayerRef;
+        if (p.CanCast(this) && targetList.Count == NumTargets)
         {
+            p.TakeCastDamage(HealthCost);
+
             foreach (Entity target in targetList)
             {
-                target.Damage(HealingValue());
+                target.TakeHitDamage(HealingValue());
             }
         }
     }
@@ -37,6 +29,8 @@ public class HealingCard : Card
         return AttackDamage;
     }
 
-
-
+    public override CardType GetCardType()
+    {
+        return CardType.HealingCard;
+    }
 }

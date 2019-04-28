@@ -15,6 +15,10 @@ public class Player : Entity
             throw new System.Exception("Tried to make second player");
         }
         PlayerRef = this;
+
+        MaxHealth = 30;
+        CurrentHealth = MaxHealth;
+        
         Team = new List<Entity> { this };
     }
 
@@ -28,7 +32,7 @@ public class Player : Entity
         CurrentHealth -= damage;
     }
 
-    public void TakeHitDamage(int damage)
+    public override void TakeHitDamage(int damage)
     {
         CurrentHealth -= damage;
     }
@@ -37,5 +41,8 @@ public class Player : Entity
     {
         CurrentHealth = MaxHealth;
         Team = new List<Entity> { this };
+        Buffs.Clear();
+        Deck.Draws.AddRange(Deck.Discards);
+        Deck.Shuffle(Deck.Draws);
     }
 }

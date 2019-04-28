@@ -2,23 +2,41 @@
 
 public class BattleManager
 {
+    public static BattleManager BattleManagerRef;
+    
     public List<Entity> Enemies;
 
     public List<Entity> Friendlies;
 
     public BattleManager(List<Entity> friendlies, List<Entity> enemies)
     {
+        BattleManagerRef = this;
+        
         Friendlies = friendlies;
         Enemies = enemies;
+        
+        Deck.DrawCard();
+        Deck.DrawCard();
+        Deck.DrawCard();
     }
 
-    public bool Die(Entity e)
+    public void Die(Entity e)
     {
+        if (e == Player.PlayerRef)
+        {
+            // TODO end game
+        }
+        
         if (Enemies.Remove(e))
         {
-            return Enemies.Count == 0;
+            if (Enemies.Count == 0)
+            {
+                // TODO next room
+            }
+
+            return;
         }
+        
         Friendlies.Remove(e);
-        return false;
     }
 }

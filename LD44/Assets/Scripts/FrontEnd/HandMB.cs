@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HandMB : MonoBehaviour
 {
-    private const float CardWidth = 2.6f;
+    private const float CardWidth = 2.2f;
     
     private void Update()
     {

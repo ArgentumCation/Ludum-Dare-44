@@ -24,6 +24,7 @@ public class CardMB : MonoBehaviour
             Vector3 mouseScreenPos = CameraMB.MainCamera.ScreenToWorldPoint(Input.mousePosition);
             transform.position = new Vector3(mouseScreenPos.x, mouseScreenPos.y, -2);
         }
+
         transform.position = Vector3.MoveTowards(transform.position, _targetPos, 1f);
     }
 
@@ -38,7 +39,7 @@ public class CardMB : MonoBehaviour
         _dragging = false;
         if (transform.position.y > 3)
         {
-            BattleActionManager.Click(MeCard);
+            BattleActionManager.Click(this);
             _targetPos = new Vector3(8, 3, -0.5f);
             transform.localScale = new Vector2(0.5f, 0.5f);
         }
@@ -46,7 +47,7 @@ public class CardMB : MonoBehaviour
         {
             BattleActionManager.ClearActive();
             Deck.InsertIntoHand(this);
-            transform.localScale = new Vector2(0.3f, 0.3f);
+            transform.localScale = new Vector2(0.25f, 0.25f);
         }
     }
 
@@ -55,25 +56,37 @@ public class CardMB : MonoBehaviour
         _targetPos = target;
     }
 
+    public void DestroyCard()
+    {
+        Destroy(gameObject);
+    }
+
     public static CardMB Spawn(Card c)
     {
         GameObject cardObject = new GameObject();
-        cardObject.transform.localScale = new Vector2(0.3f, 0.3f);
+        cardObject.transform.localScale = new Vector2(0.25f, 0.25f);
         CardMB cardMb = cardObject.AddComponent<CardMB>();
         SpriteRenderer cardSpriteRenderer = cardObject.AddComponent<SpriteRenderer>();
         BoxCollider2D boxCollider2D = cardObject.AddComponent<BoxCollider2D>();
         boxCollider2D.size = new Vector2(8, 10);
-        if (c.GetType() == typeof(AttackCard))
-            cardSpriteRenderer.sprite = CardBgs[0];
-        else if (c.GetType() == typeof(BuffCard))
-            cardSpriteRenderer.sprite = CardBgs[1];
-        else if (c.GetType() == typeof(HealingCard))
-            cardSpriteRenderer.sprite = CardBgs[2];
-        else if (c.GetType() == typeof(SummonCard))
-            cardSpriteRenderer.sprite = CardBgs[3];
-        else
-            throw new ArgumentException("Invalid card: " + c.GetType().FullName);
-        
+        switch (c.GetCardType())
+        {
+            case CardType.AttackCard:
+                cardSpriteRenderer.sprite = CardBgs[0];
+                break;
+            case CardType.BuffCard:
+                cardSpriteRenderer.sprite = CardBgs[1];
+                break;
+            case CardType.HealingCard:
+                cardSpriteRenderer.sprite = CardBgs[2];
+                break;
+            case CardType.SummonCard:
+                cardSpriteRenderer.sprite = CardBgs[3];
+                break;
+            default:
+                throw new ArgumentException("Invalid card: " + c.GetType().FullName);
+        }
+
         cardMb.Init(c, new Vector2(HandMB.CalculatePos(Deck.Hand.Count), 1.5f));
 
         return cardMb;

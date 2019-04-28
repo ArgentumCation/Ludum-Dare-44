@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 public class Card
 {
@@ -14,5 +15,10 @@ public class Card
     // Casts the card effect;
     public virtual void Cast(IEnumerable<Entity> targets)
     {
+    }
+
+    public virtual CardType GetCardType()
+    {
+        throw new NotImplementedException("Called Card.CardType instead of on a subclass'");
     }
 }

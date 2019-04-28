@@ -2,17 +2,12 @@
 
 public class EntityMB : MonoBehaviour
 {
-    public SpriteRenderer HealthBar;
-    private Material _healthBarMaterial;
+    public MeshRenderer HealthBar;
     private Entity _meEntity;
-    private static readonly int Charge = Shader.PropertyToID("Charge");
+    private static readonly int Charge = Shader.PropertyToID("_Charge");
+    public static GameObject EntityPrefab;
 
-    private void Start()
-    {
-        _healthBarMaterial = HealthBar.material;
-    }
-
-    private void Init(Entity e)
+    public void Init(Entity e)
     {
         _meEntity = e;
     }
@@ -22,7 +17,7 @@ public class EntityMB : MonoBehaviour
         if (_meEntity == null)
             return;
         
-        _healthBarMaterial.SetFloat(Charge, ((float) _meEntity.CurrentHealth) / _meEntity.MaxHealth);
+        HealthBar.material.SetFloat(Charge, ((float) _meEntity.CurrentHealth) / _meEntity.MaxHealth);
     }
 
     private void OnMouseUp()
