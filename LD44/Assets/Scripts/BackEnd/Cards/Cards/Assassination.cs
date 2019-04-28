@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Assassination : AttackCard
 {
@@ -8,6 +9,7 @@ public class Assassination : AttackCard
         AttackDamage = 0;
         HealthCost = 5;
         Description = "Assassination\n5 HP\nDestroy a single target with 25% or less health remaining.";
+        CardArt = Resources.Load<Sprite>("CardArt/assassination");
     }
 
     // Casts the card effect on an enemy with 25% or less health

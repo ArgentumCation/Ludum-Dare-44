@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class BloodBeam : AttackCard
 {
@@ -7,6 +8,7 @@ public class BloodBeam : AttackCard
         AttackDamage = 5;
         HealthCost = 4;
         Description = "Blood Beam\n4 HP\nDeal 5 damage to all enemies.";
+        CardArt = Resources.Load<Sprite>("CardArt/assassination");
     }
 
     // Casts the card effect on all enemies
