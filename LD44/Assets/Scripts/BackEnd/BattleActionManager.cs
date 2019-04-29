@@ -23,7 +23,9 @@ public class BattleActionManager
     {
         if (State != BattleActionState.SelectCard)
             return;
-
+        if (!Player.PlayerRef.CanCast(cardMb.MeCard))
+            return;
+        
         _activeCard = cardMb;
         State = BattleActionState.SelectTargets;
     }
