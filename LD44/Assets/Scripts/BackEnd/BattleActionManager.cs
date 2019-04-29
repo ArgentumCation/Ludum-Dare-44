@@ -66,9 +66,47 @@ public class BattleActionManager
             List<Entity> enemies = BattleManager.BattleManagerRef.Enemies;
             int choice = Random.Range(0, enemies.Count);
             Entity attacking = enemies[choice];
-            int _attackDamage = attacking.AttackDamage;
-            Player P = Player.PlayerRef;
-            P.TakeHitDamage(_attackDamage);
+            int attackDamage = attacking.AttackDamage;
+            Player p = Player.PlayerRef;
+            p.TakeHitDamage(attackDamage);
+
+            // If can't use spells, dump hand, draw new
+            bool canUseSpell = false;
+            foreach (CardMB cMb in Deck.Hand)
+            {
+                if (Player.PlayerRef.CanCast(cMb.MeCard))
+                {
+                    canUseSpell = true;
+                    break;
+                }
+            }
+            if (!canUseSpell && Player.PlayerRef.CurrentHealth > 0)
+            {
+                int handSize = Deck.Hand.Count;
+                for (int i = handSize - 1; i >= 0; i--)
+                {
+                    Deck.Discard(Deck.Hand[i]);
+                }
+                
+                Deck.DrawCard();
+                Deck.DrawCard();
+                Deck.DrawCard();
+                
+                // If still can't use cards after a new draw 3, then lose
+                foreach (CardMB cMb in Deck.Hand)
+                {
+                    if (Player.PlayerRef.CanCast(cMb.MeCard))
+                    {
+                        canUseSpell = true;
+                        break;
+                    }
+                }
+                if (!canUseSpell)
+                {
+                    // TODO lose
+                }
+            }
+            
             State = BattleActionState.SelectCard;
         }
     }

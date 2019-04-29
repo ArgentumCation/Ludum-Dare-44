@@ -21,6 +21,6 @@ public class CardList
 
     public static Type GetRandomCard()
     {
-        return Cards[Random.Range(0, Cards.Length - 1)];
+        return Cards[Random.Range(0, Cards.Length)];
     }
 }

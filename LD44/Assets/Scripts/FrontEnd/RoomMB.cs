@@ -18,7 +18,7 @@ public class RoomMB : MonoBehaviour
         transform.position = new Vector3(25, 6, 5);
         name = "Room";
         SpriteRenderer bg = GetComponentInChildren<SpriteRenderer>();
-        bg.sprite = Resources.Load<Sprite>("Backgrounds/bg0" + Random.Range(1, 4));
+        bg.sprite = Resources.Load<Sprite>("Backgrounds/bg0" + Random.Range(1, 5));
     }
 
     public void Init(RoomType t)
@@ -34,6 +34,9 @@ public class RoomMB : MonoBehaviour
                 break;
             case RoomType.FountainRoom:
                 _meRoom = new FountainRoom();
+                break;
+            case RoomType.BossRoom:
+                _meRoom = new BossRoom();
                 break;
             default:
                 throw new Exception("How could this have happened?");

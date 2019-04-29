@@ -41,7 +41,7 @@ public class CardMB : MonoBehaviour
     private void OnMouseDown()
     {
         _dragging = true;
-        transform.localScale = new Vector3(0.5f, 0.5f, 1);
+        transform.localScale = new Vector3(0.4f, 0.4f, 1);
         Deck.Hand.Remove(this);
     }
 

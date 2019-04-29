@@ -14,13 +14,13 @@ public class RoomGenerator
         RoomMB roomMb = roomObject.GetComponent<RoomMB>();
         if (TotalRooms > 50)
         {
-            if (TotalRooms == 51)
+            if (TotalRooms < 54)
             {
                 roomMb.Init(RoomType.FountainRoom);
             }
-            else if (TotalRooms == 52)
+            else if (TotalRooms == 54)
             {
-                //TODO boss room
+                roomMb.Init(RoomType.BossRoom);
             }
             else
             {

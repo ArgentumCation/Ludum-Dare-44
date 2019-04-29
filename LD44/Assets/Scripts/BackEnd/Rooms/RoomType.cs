@@ -2,5 +2,6 @@ public enum RoomType
 {
     BattleRoom,
     ArtifactRoom,
-    FountainRoom
+    FountainRoom,
+    BossRoom
 }

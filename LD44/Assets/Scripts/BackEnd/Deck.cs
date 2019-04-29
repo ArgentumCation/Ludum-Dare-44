@@ -28,10 +28,11 @@ public class Deck
     public static void Discard(CardMB cardMb)
     {
         if (!Hand.Contains(cardMb))
-            throw new Exception("Card isnt able to be discarded");
+            throw new Exception("Card isn't able to be discarded");
 
         Hand.Remove(cardMb);
         Discards.Add(cardMb.MeCard);
+        UnityEngine.Object.Destroy(cardMb.gameObject);
     }
 
     public static void InsertIntoHand(CardMB cardMb)
@@ -52,7 +53,7 @@ public class Deck
         int listCount = list.Count;
         for (int i = 0; i < listCount; i++)
         {
-            int j = Random.Range(i, listCount - 1);
+            int j = Random.Range(i, listCount);
             Card temp = list[i];
             list[i] = list[j];
             list[j] = temp;
