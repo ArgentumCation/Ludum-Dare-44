@@ -12,6 +12,6 @@ public class EnemyList
 
     public static Type GetRandomEnemy()
     {
-        return Enemies[Random.Range(0, Enemies.Length - 1)];
+        return Enemies[Random.Range(0, Enemies.Length)];
     }
 }
