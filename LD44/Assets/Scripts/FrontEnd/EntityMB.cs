@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 public class EntityMB : MonoBehaviour
 {
@@ -6,6 +7,12 @@ public class EntityMB : MonoBehaviour
     public static GameObject EntityPrefab;
     private Entity _meEntity;
     public MeshRenderer HealthBar;
+    private TMP_Text _text;
+
+    private void Start()
+    {
+        _text = GetComponent<TMP_Text>();
+    }
 
     public void Init(Entity e)
     {
@@ -14,6 +21,8 @@ public class EntityMB : MonoBehaviour
         
         float currentHealthFrac = (float) _meEntity.CurrentHealth / _meEntity.MaxHealth;
         HealthBar.material.SetFloat(Charge, currentHealthFrac);
+        _text = GetComponent<TMP_Text>();
+        _text.text = _meEntity.CurrentHealth + " / " + _meEntity.MaxHealth;
     }
 
     private void Update()
@@ -23,6 +32,8 @@ public class EntityMB : MonoBehaviour
 
         float currentHealthFrac = (float) _meEntity.CurrentHealth / _meEntity.MaxHealth;
         HealthBar.material.SetFloat(Charge, currentHealthFrac);
+        _text.text = _meEntity.CurrentHealth + " / " + _meEntity.MaxHealth;
+        
         if (_meEntity.CurrentHealth <= 0)
         {
             _meEntity.Die();

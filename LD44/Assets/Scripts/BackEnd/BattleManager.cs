@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class BattleManager
 {
     public static BattleManager BattleManagerRef;
+    public static GameObject EndGameObject;
 
     public List<Entity> Enemies;
 
@@ -21,7 +23,8 @@ public class BattleManager
     {
         if (e == Player.PlayerRef)
         {
-            // TODO lose
+            EndGameObject.SetActive(true);
+            EndGameObject.GetComponent<EndGameMB>().Activate(false);
         }
 
         if (Enemies.Remove(e))

@@ -24,7 +24,8 @@ public class RoomGenerator
             }
             else
             {
-                // TODO win
+                BattleManager.EndGameObject.SetActive(true);
+                BattleManager.EndGameObject.GetComponent<EndGameMB>().Activate(true);
             }
         }
         else if (BattlesSinceFountain >= MinBattlesSinceFountain)

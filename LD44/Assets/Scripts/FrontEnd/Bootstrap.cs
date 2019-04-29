@@ -9,6 +9,7 @@ public class Bootstrap : MonoBehaviour
     public GameObject RoomPrefab;
     public GameObject AddCardPrefab;
     public GameObject FountainPrefab;
+    public GameObject EndGameObject;
 
     private void Start()
     {
@@ -18,6 +19,7 @@ public class Bootstrap : MonoBehaviour
         EntityMB.EntityPrefab = EntityPrefab;
         AddCardMB.AddCardPrefab = AddCardPrefab;
         FountainMB.FountainPrefab = FountainPrefab;
+        BattleManager.EndGameObject = EndGameObject;
 
         new Player();
 

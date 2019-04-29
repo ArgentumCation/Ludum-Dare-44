@@ -47,7 +47,15 @@ public class Player : Entity
         Team = new List<Entity> {this};
         Buffs.Clear();
         // TODO apply artifact buffs
+        for (int i = Deck.Hand.Count - 1; i >= 0; i--)
+        {
+            Deck.Discard(Deck.Hand[i]);
+        }
         Deck.Draws.AddRange(Deck.Discards);
         Deck.Shuffle(Deck.Draws);
+        Deck.Discards = new List<Card>();
+        Deck.DrawCard();
+        Deck.DrawCard();
+        Deck.DrawCard();
     }
 }

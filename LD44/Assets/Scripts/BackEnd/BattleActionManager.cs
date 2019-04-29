@@ -103,7 +103,9 @@ public class BattleActionManager
                     return true;
         }
 
-        // TODO lose
+        
+        BattleManager.EndGameObject.SetActive(true);
+        BattleManager.EndGameObject.GetComponent<EndGameMB>().Activate(false);
         return false;
     }
 }
