@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System.Collections;
 
 public class BattleActionManager
 {
@@ -41,11 +42,11 @@ public class BattleActionManager
 
         _targets.Add(entity);
 
-        if (_activeCard.MeCard.NumTargets < _targets.Count)
+        if (_activeCard.MeCard.NumTargets > _targets.Count)
             return;
 
         State = BattleActionState.HandleTurn;
-        if (_activeCard.MeCard.NumTargets > _targets.Count)
+        if (_activeCard.MeCard.NumTargets < _targets.Count)
         {
             Debug.Log("Too many targets! Card: " + _activeCard.GetType().FullName);
             _activeCard.MeCard.Cast(_targets.Take(_activeCard.MeCard.NumTargets).ToList());
@@ -61,5 +62,25 @@ public class BattleActionManager
         _targets.Clear();
         Deck.DrawCard();
         State = BattleActionState.SelectCard;
+        RoomMB.ActiveRoom.StartCoroutine(WaitAndAttackPlayer());
+    }
+
+    private static void AttackPlayer()
+    {
+        if (BattleManager.BattleManagerRef.Enemies.Count != 0)
+        {
+            List<Entity> enemies = BattleManager.BattleManagerRef.Enemies;
+            int choice = Random.Range(0, enemies.Count);
+            Entity attacking = enemies[choice];
+            int _attackDamage = attacking.AttackDamage;
+            Player P = Player.PlayerRef;
+            P.TakeHitDamage(_attackDamage);
+        }
+    }
+
+    private static IEnumerator WaitAndAttackPlayer()
+    {
+        yield return new WaitForSeconds(0.5f);
+        AttackPlayer();
     }
 }

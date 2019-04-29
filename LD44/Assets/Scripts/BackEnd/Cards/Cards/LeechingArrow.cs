@@ -20,7 +20,7 @@ public class LeechingArrow : AttackCard
         {
             P.TakeCastDamage(HealthCost);
             enemies[0].TakeHitDamage(AttackDamage);
-            P.TakeHitDamage(-1 * AttackDamage);
+            P.TakeHitDamage(-2 * AttackDamage);
         }
     }
 }

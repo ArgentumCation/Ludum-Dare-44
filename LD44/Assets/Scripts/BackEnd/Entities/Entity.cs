@@ -8,6 +8,9 @@ public abstract class Entity
 
     // entity health remaining
     private int _currentHealth;
+
+    public int AttackDamage;
+
     public int CurrentHealth
     {
         get => _currentHealth;
