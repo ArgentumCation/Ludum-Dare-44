@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class ComboHeal : HealingCard
 {
@@ -8,6 +9,7 @@ public class ComboHeal : HealingCard
         AttackDamage = -5;
         HealthCost = 2;
         Description = "Combo Heal\n2 HP\nHeal 5 to player. If below 50% health afterwards, heal 5 more.";
+        CardArt = Resources.Load<Sprite>("CardArt/combo_heal");
     }
 
     // Casts the card effect on the player

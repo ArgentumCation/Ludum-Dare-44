@@ -8,7 +8,7 @@ public class BloodBeam : AttackCard
         AttackDamage = 5;
         HealthCost = 4;
         Description = "Blood Beam\n4 HP\nDeal 5 damage to all enemies.";
-        CardArt = Resources.Load<Sprite>("CardArt/assassination");
+        CardArt = Resources.Load<Sprite>("CardArt/blood_beam");
     }
 
     // Casts the card effect on all enemies
