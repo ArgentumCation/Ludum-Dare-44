@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class RoomMB : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class RoomMB : MonoBehaviour
         _scrolling = -1;
         transform.position = new Vector3(25, 6, 5);
         name = "Room";
+        SpriteRenderer bg = GetComponentInChildren<SpriteRenderer>();
+        bg.sprite = Resources.Load<Sprite>("Backgrounds/bg0" + Random.Range(1, 4));
     }
 
     public void Init(RoomType t)

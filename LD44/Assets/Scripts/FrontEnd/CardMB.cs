@@ -44,7 +44,7 @@ public class CardMB : MonoBehaviour
     private void OnMouseUp()
     {
         _dragging = false;
-        if (transform.position.y > 3)
+        if (transform.position.y > 3 && BattleActionManager.State == BattleActionState.SelectCard)
         {
             BattleActionManager.Click(this);
             _targetPos = new Vector3(8, 3, -0.5f);
