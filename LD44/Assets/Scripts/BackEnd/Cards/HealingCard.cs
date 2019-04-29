@@ -19,14 +19,14 @@ public class HealingCard : Card
             p.TakeCastDamage(HealthCost);
 
             foreach (Entity target in targets)
-                target.TakeHitDamage(HealingValue());
+                target.Heal(HealingValue());
         }
     }
 
     // returns the healing value.
     protected virtual int HealingValue()
     {
-        return AttackDamage;
+        return -AttackDamage;
     }
 
     public override CardType GetCardType()

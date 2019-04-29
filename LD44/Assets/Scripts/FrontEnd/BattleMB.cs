@@ -13,8 +13,6 @@ public class BattleMB : MonoBehaviour
     public void Init(List<Entity> enemies)
     {
         _battleManager = new BattleManager(Player.Team, enemies);
-
-        // TODO apply artifact buffs
     }
 
     private void Update()

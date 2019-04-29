@@ -21,7 +21,7 @@ public class BattleManager
     {
         if (e == Player.PlayerRef)
         {
-            // TODO end game
+            // TODO lose
         }
 
         if (Enemies.Remove(e))

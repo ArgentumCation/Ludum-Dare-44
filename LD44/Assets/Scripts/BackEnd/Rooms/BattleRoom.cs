@@ -31,5 +31,6 @@ public class BattleRoom : Room
         GameObject gameObject = new GameObject();
         BattleMB battleMb = gameObject.AddComponent<BattleMB>();
         battleMb.Init(Enemies);
+        BattleActionManager.CheckSpellsUsable();
     }
 }

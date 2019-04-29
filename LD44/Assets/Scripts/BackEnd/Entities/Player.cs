@@ -22,6 +22,7 @@ public class Player : Entity
 
         Team = new List<Entity> {this};
         Buffs = new List<Buff>();
+        // TODO apply artifact buffs
     }
 
     public bool CanCast(Card c)
@@ -31,12 +32,13 @@ public class Player : Entity
 
     public void TakeCastDamage(int damage)
     {
-        CurrentHealth -= damage;
-    }
-
-    public override void TakeHitDamage(int damage)
-    {
-        CurrentHealth -= damage;
+        
+        float buffPercent = 0;
+        foreach (Buff buff in Buffs)
+            if (buff.Type == BuffType.CostBuff)
+                buffPercent += buff.Amount;
+        
+        CurrentHealth -= Mathf.RoundToInt(Mathf.Max(damage * (1 - buffPercent / 100), 0));
     }
 
     public void UseFountain()
@@ -44,6 +46,7 @@ public class Player : Entity
         CurrentHealth = MaxHealth;
         Team = new List<Entity> {this};
         Buffs.Clear();
+        // TODO apply artifact buffs
         Deck.Draws.AddRange(Deck.Discards);
         Deck.Shuffle(Deck.Draws);
     }

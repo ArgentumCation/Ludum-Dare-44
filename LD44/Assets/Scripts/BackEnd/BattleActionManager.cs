@@ -25,7 +25,7 @@ public class BattleActionManager
             return;
         if (!Player.PlayerRef.CanCast(cardMb.MeCard))
             return;
-        
+
         _activeCard = cardMb;
         State = BattleActionState.SelectTargets;
     }
@@ -64,49 +64,12 @@ public class BattleActionManager
         if (BattleManager.BattleManagerRef.Enemies.Count != 0)
         {
             List<Entity> enemies = BattleManager.BattleManagerRef.Enemies;
-            int choice = Random.Range(0, enemies.Count);
-            Entity attacking = enemies[choice];
-            int attackDamage = attacking.AttackDamage;
-            Player p = Player.PlayerRef;
-            p.TakeHitDamage(attackDamage);
+            Entity attacking = enemies[Random.Range(0, enemies.Count)];
+            Player.PlayerRef.TakeHitDamage(attacking.GetAttackDamage());
 
-            // If can't use spells, dump hand, draw new
-            bool canUseSpell = false;
-            foreach (CardMB cMb in Deck.Hand)
-            {
-                if (Player.PlayerRef.CanCast(cMb.MeCard))
-                {
-                    canUseSpell = true;
-                    break;
-                }
-            }
-            if (!canUseSpell && Player.PlayerRef.CurrentHealth > 0)
-            {
-                int handSize = Deck.Hand.Count;
-                for (int i = handSize - 1; i >= 0; i--)
-                {
-                    Deck.Discard(Deck.Hand[i]);
-                }
-                
-                Deck.DrawCard();
-                Deck.DrawCard();
-                Deck.DrawCard();
-                
-                // If still can't use cards after a new draw 3, then lose
-                foreach (CardMB cMb in Deck.Hand)
-                {
-                    if (Player.PlayerRef.CanCast(cMb.MeCard))
-                    {
-                        canUseSpell = true;
-                        break;
-                    }
-                }
-                if (!canUseSpell)
-                {
-                    // TODO lose
-                }
-            }
-            
+            if (!CheckSpellsUsable())
+                return;
+
             State = BattleActionState.SelectCard;
         }
     }
@@ -115,5 +78,32 @@ public class BattleActionManager
     {
         yield return new WaitForSeconds(0.5f);
         AttackPlayer();
+    }
+
+    public static bool CheckSpellsUsable()
+    {
+        // If can't use spells, dump hand, draw new
+        foreach (CardMB cMb in Deck.Hand)
+            if (Player.PlayerRef.CanCast(cMb.MeCard))
+                return true;
+
+        if (Player.PlayerRef.CurrentHealth > 0)
+        {
+            int handSize = Deck.Hand.Count;
+            for (int i = handSize - 1; i >= 0; i--)
+                Deck.Discard(Deck.Hand[i]);
+
+            Deck.DrawCard();
+            Deck.DrawCard();
+            Deck.DrawCard();
+
+            // If still can't use cards after a new draw 3, then lose
+            foreach (CardMB cMb in Deck.Hand)
+                if (Player.PlayerRef.CanCast(cMb.MeCard))
+                    return true;
+        }
+
+        // TODO lose
+        return false;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class AttackCard : Card
 {
@@ -26,7 +27,12 @@ public class AttackCard : Card
     // returns card attack damage
     protected virtual int DamageValue()
     {
-        return AttackDamage;
+        float buffPercent = 0;
+        foreach (Buff buff in Player.PlayerRef.Buffs)
+            if (buff.Type == BuffType.AttackBuff)
+                buffPercent += buff.Amount;
+        
+        return Mathf.RoundToInt(Mathf.Max(AttackDamage * (1 + buffPercent / 100), 0));
     }
 
     public override CardType GetCardType()

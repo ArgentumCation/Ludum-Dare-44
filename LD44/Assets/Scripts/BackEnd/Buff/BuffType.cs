@@ -1,4 +1,6 @@
 public enum BuffType
 {
-    AttackBuff
+    AttackBuff,
+    CostBuff,
+    DefenseBuff
 }
