@@ -5,7 +5,9 @@ public class EnemyList
 {
     public static Type[] Enemies =
     {
-        typeof(TestEnemy)
+        typeof(WetWolf),
+        typeof(HoarseHorse),
+        typeof(CrustyRodent)
     };
 
     public static Type GetRandomEnemy()

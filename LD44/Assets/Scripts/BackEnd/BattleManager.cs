@@ -14,6 +14,7 @@ public class BattleManager
 
         Friendlies = friendlies;
         Enemies = enemies;
+        BattleActionManager.State = BattleActionState.SelectCard;
     }
 
     public void Die(Entity e)

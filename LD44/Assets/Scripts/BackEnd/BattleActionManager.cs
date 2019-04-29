@@ -5,16 +5,9 @@ using System.Collections;
 
 public class BattleActionManager
 {
-    public static BattleActionState State;
+    public static BattleActionState State = BattleActionState.HandleTurn;
     private static CardMB _activeCard;
     private static List<Entity> _targets = new List<Entity>();
-
-    public static void Init()
-    {
-        _activeCard = null;
-        _targets.Clear();
-        State = BattleActionState.SelectCard;
-    }
 
     public static void ClearActive()
     {
@@ -61,7 +54,6 @@ public class BattleActionManager
         _activeCard = null;
         _targets.Clear();
         Deck.DrawCard();
-        State = BattleActionState.SelectCard;
         RoomMB.ActiveRoom.StartCoroutine(WaitAndAttackPlayer());
     }
 
@@ -75,6 +67,7 @@ public class BattleActionManager
             int _attackDamage = attacking.AttackDamage;
             Player P = Player.PlayerRef;
             P.TakeHitDamage(_attackDamage);
+            State = BattleActionState.SelectCard;
         }
     }
 
