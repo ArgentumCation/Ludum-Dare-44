@@ -9,7 +9,6 @@ public class RoomMB : MonoBehaviour
     public static RoomMB ActiveRoom;
 
     private Room _meRoom;
-    private RoomType _meType;
     private int _scrolling;
 
     private void Start()
@@ -25,7 +24,6 @@ public class RoomMB : MonoBehaviour
     public void Init(RoomType t)
     {
         ActiveRoom = this;
-        _meType = t;
         switch (t)
         {
             case RoomType.BattleRoom:
@@ -72,6 +70,8 @@ public class RoomMB : MonoBehaviour
 
     private void Enter()
     {
+        if (_meRoom == null)
+            Init(RoomType.BattleRoom);
         _meRoom.Enter();
     }
 }

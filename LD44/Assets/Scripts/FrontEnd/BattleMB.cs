@@ -21,6 +21,9 @@ public class BattleMB : MonoBehaviour
     {
         if (_battleManager == null)
             return;
+        
+        if (_battleManager.Enemies.Count == 0)
+            Destroy(gameObject);
     }
 
     public void End()

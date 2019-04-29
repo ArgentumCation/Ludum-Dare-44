@@ -1,9 +1,9 @@
-﻿using System;
+﻿using UnityEngine;
 
 public class ArtifactRoom : Room
 {
     public override void Enter()
     {
-        throw new NotImplementedException();
+        Object.Instantiate(AddCardMB.AddCardPrefab);
     }
 }

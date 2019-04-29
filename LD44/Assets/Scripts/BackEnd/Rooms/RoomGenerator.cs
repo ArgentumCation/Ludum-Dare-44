@@ -2,7 +2,7 @@
 
 public class RoomGenerator
 {
-    public static int MinBattlesSinceFountain = 3;
+    public static int MinBattlesSinceFountain = 2;
     public static int BattlesSinceFountain;
     public static int BattlesSinceArtifact;
     public static int TotalRooms;
@@ -10,8 +10,8 @@ public class RoomGenerator
     public static void GenerateRoom()
     {
         TotalRooms++;
-        GameObject roomObjcet = Object.Instantiate(RoomMB.RoomPrefab);
-        RoomMB roomMb = roomObjcet.GetComponent<RoomMB>();
+        GameObject roomObject = Object.Instantiate(RoomMB.RoomPrefab);
+        RoomMB roomMb = roomObject.GetComponent<RoomMB>();
         if (TotalRooms > 50)
         {
             if (TotalRooms == 51)
@@ -27,23 +27,22 @@ public class RoomGenerator
                 // TODO win
             }
         }
-        else if (BattlesSinceFountain > MinBattlesSinceFountain)
+        else if (BattlesSinceFountain >= MinBattlesSinceFountain)
         {
-            if (Random.value > 0.8)
-                MinBattlesSinceFountain++;
 
             if (Random.value > 0.3)
             {
+                if (Random.value > 0.8)
+                    MinBattlesSinceFountain++;
+                
+                BattlesSinceFountain = 0;
                 roomMb.Init(RoomType.FountainRoom);
             }
         }
-        else if (BattlesSinceArtifact > 5)
+        else if (Random.value > 0.9)
         {
-            if (Random.value > 0.8)
-            {
-                BattlesSinceArtifact = 0;
-                roomMb.Init(RoomType.ArtifactRoom);
-            }
+            BattlesSinceArtifact = 0;
+            roomMb.Init(RoomType.ArtifactRoom);
         }
         else
         {

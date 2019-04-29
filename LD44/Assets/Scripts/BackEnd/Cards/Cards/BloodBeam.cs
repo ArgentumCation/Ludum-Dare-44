@@ -15,10 +15,10 @@ public class BloodBeam : AttackCard
     public override void Cast(List<Entity> targets)
     {
         List<Entity> enemies = BattleManager.BattleManagerRef.Enemies;
-        Player P = Player.PlayerRef;
-        if (P.CanCast(this))
+        Player p = Player.PlayerRef;
+        if (p.CanCast(this))
         {
-            P.TakeCastDamage(HealthCost);
+            p.TakeCastDamage(HealthCost);
             foreach (Entity enemy in enemies)
             {
                 enemy.TakeHitDamage(AttackDamage);

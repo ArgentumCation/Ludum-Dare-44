@@ -174,6 +174,10 @@ MonoBehaviour:
     type: 3}
   RoomPrefab: {fileID: 1555603756896233663, guid: 72cace12c30d0484cbff8064c3298165,
     type: 3}
+  AddCardPrefab: {fileID: 1209531648604088486, guid: 69438933c5748c6488d04d2abf8c551d,
+    type: 3}
+  FountainPrefab: {fileID: 4112413253516543391, guid: 4489face4e024e643a2db90bace4e9a6,
+    type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
