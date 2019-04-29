@@ -4,12 +4,14 @@ using UnityEngine;
 public class Bootstrap : MonoBehaviour
 {
     public List<Sprite> CardBgs;
+    public GameObject CardPrefab;
     public GameObject EntityPrefab;
     public GameObject RoomPrefab;
 
     private void Start()
     {
         CardMB.CardBgs = CardBgs;
+        CardMB.CardPrefab = CardPrefab;
         RoomMB.RoomPrefab = RoomPrefab;
         EntityMB.EntityPrefab = EntityPrefab;
 

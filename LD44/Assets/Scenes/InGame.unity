@@ -168,6 +168,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e1066f63ea3f45e48835dfa0d8a1f4fb, type: 3}
   - {fileID: 21300000, guid: 46a3917bd59718640a674da599cff6e3, type: 3}
   - {fileID: 21300000, guid: 5d04ba0e8f5d35442ab3ca350210a076, type: 3}
+  CardPrefab: {fileID: 4243183539544049812, guid: a717995347c82974ca05af4faa03d571,
+    type: 3}
   EntityPrefab: {fileID: 1760408740226855398, guid: 37c1f14008616ea4f859a328e4cc7aed,
     type: 3}
   RoomPrefab: {fileID: 1555603756896233663, guid: 72cace12c30d0484cbff8064c3298165,

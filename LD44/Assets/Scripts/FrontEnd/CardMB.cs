@@ -6,6 +6,10 @@ using UnityEngine;
 public class CardMB : MonoBehaviour
 {
     public static List<Sprite> CardBgs = new List<Sprite>();
+    public static GameObject CardPrefab;
+
+    public SpriteRenderer CardSprite;
+    public SpriteRenderer CardArt;
     
     private bool _dragging;
     
@@ -37,7 +41,7 @@ public class CardMB : MonoBehaviour
     private void OnMouseDown()
     {
         _dragging = true;
-        transform.localScale = new Vector2(0.5f, 0.5f);
+        transform.localScale = new Vector3(0.5f, 0.5f, 1);
         Deck.Hand.Remove(this);
     }
 
@@ -53,7 +57,7 @@ public class CardMB : MonoBehaviour
         {
             BattleActionManager.ClearActive();
             Deck.InsertIntoHand(this);
-            transform.localScale = new Vector2(0.25f, 0.25f);
+            transform.localScale = new Vector3(0.25f, 0.25f, 1);
         }
     }
 
@@ -69,42 +73,30 @@ public class CardMB : MonoBehaviour
 
     public static CardMB Spawn(Card c)
     {
-        GameObject cardObject = new GameObject();
-        cardObject.transform.localScale = new Vector2(0.25f, 0.25f);
-
-        CardMB cardMb = cardObject.AddComponent<CardMB>();
-        SpriteRenderer cardSpriteRenderer = cardObject.AddComponent<SpriteRenderer>();
-        BoxCollider2D boxCollider2D = cardObject.AddComponent<BoxCollider2D>();
-        boxCollider2D.size = new Vector2(8, 10);
-
+        GameObject cardObject = Instantiate(CardPrefab);
+        CardMB cardMb = cardObject.GetComponent<CardMB>();
+        
         switch (c.GetCardType())
         {
             case CardType.AttackCard:
-                cardSpriteRenderer.sprite = CardBgs[0];
+                cardMb.CardSprite.sprite = CardBgs[0];
                 break;
             case CardType.BuffCard:
-                cardSpriteRenderer.sprite = CardBgs[1];
+                cardMb.CardSprite.sprite = CardBgs[1];
                 break;
             case CardType.HealingCard:
-                cardSpriteRenderer.sprite = CardBgs[2];
+                cardMb.CardSprite.sprite = CardBgs[2];
                 break;
             case CardType.SummonCard:
-                cardSpriteRenderer.sprite = CardBgs[3];
+                cardMb.CardSprite.sprite = CardBgs[3];
                 break;
             default:
                 throw new ArgumentException("Invalid card: " + c.GetType().FullName);
         }
 
-        GameObject textObject = new GameObject("Text");
-        textObject.transform.parent = cardObject.transform;
-        textObject.transform.position = new Vector3(-2.5f, -1, -0.1f);
-        TextMeshPro text = textObject.AddComponent<TextMeshPro>();
-        RectTransform rect = textObject.GetComponent<RectTransform>();
-        text.fontSize = 4;
-        text.color = Color.black;
-        rect.localScale = Vector3.one;
-        rect.localPosition = new Vector3(0, -2.4f, 0);
-        rect.sizeDelta = new Vector2(5.25f, 3f);
+        cardMb.CardArt.sprite = c.CardArt;
+        
+        TextMeshPro text = cardObject.GetComponentInChildren<TextMeshPro>();
         string[] textLines = c.Description.Split('\n');
         text.text = string.Format("<b>{0}</b>\n<i>{1}</i>\n{2}", textLines);
 
