@@ -1,9 +1,10 @@
-﻿using System;
+﻿using UnityEngine;
 
-public class WarHorn
+public class WarHorn : BuffCard
 {
 	public WarHorn()
 	{
 
+		CardArt = Resources.Load<Sprite>("CardArt/war_horn");
 	}
 }
