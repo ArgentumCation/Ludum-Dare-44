@@ -45,6 +45,7 @@ public class RoomMB : MonoBehaviour
 
     public void Exit()
     {
+        Player.PlayerRef.RoomCount++;
         _meRoom.Exit();
         _scrolling = 1;
     }

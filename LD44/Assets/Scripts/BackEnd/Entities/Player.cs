@@ -10,8 +10,11 @@ public class Player : Entity
 
     public Artifact[] Artifacts;
 
+    public int RoomCount;
+
     public Player()
     {
+        RoomCount = 0;
         if (PlayerRef != null)
             throw new Exception("Tried to make second player");
         PlayerRef = this;

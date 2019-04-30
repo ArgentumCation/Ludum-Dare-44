@@ -13,6 +13,6 @@ public class CardCountMB : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        _text.text = "Draws: " + Deck.Draws.Count + "\tDiscards: " + Deck.Discards.Count;
+        _text.text = "Draws: " + Deck.Draws.Count + "\tDiscards: " + Deck.Discards.Count + "\t  Score: " + Player.PlayerRef.RoomCount;
     }
 }
