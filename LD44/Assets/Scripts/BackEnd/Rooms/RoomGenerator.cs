@@ -20,6 +20,7 @@ public class RoomGenerator
             }
             else if (TotalRooms == 54)
             {
+                Music.musicRef.SetSong(2);
                 roomMb.Init(RoomType.BossRoom);
             }
             else

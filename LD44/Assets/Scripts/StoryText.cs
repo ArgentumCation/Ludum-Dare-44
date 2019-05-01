@@ -29,6 +29,7 @@ public class StoryText : MonoBehaviour
             _progression += Time.deltaTime;
             if (_progression - textCount > 6)
             {
+                Music.musicRef.SetSong(1);
                 SceneManager.LoadScene("InGame");
             }
         }
