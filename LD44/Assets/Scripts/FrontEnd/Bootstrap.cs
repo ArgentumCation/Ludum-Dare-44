@@ -25,28 +25,22 @@ public class Bootstrap : MonoBehaviour
 
         Deck.Draws = new List<Card>
         {
-            //new TestCard(),
-            //new TestCard(),
-            new BuffCard(),
+            new Punch(),
             new ComboStrike(),
             new HealingBeam(),
+            // Top three will always be drawn first turn but after that, shuffle.
+            new LesserHealing(),
             new Jab(),
             new HammerThrust(),
             new Punch(),
-            new BloodBeam(),
-            new Assassination(),
-            new DoubleStrike(),
-            new LeechingArrow(),
-            new LesserHealing(),
-            new RoundhouseKick(),
             new Punch()
         };
 
+        Deck.DrawCard();
+        Deck.DrawCard();
+        Deck.DrawCard();
+        
         Deck.Shuffle(Deck.Draws);
-
-        Deck.DrawCard();
-        Deck.DrawCard();
-        Deck.DrawCard();
         
         RoomGenerator.GenerateRoom();
     }

@@ -14,7 +14,8 @@ public class BattleRoom : Room
 
         Enemies = new List<Entity>();
 
-        int n = Random.Range(1, Random.Range(2, 5));
+        int max = 1 + RoomGenerator.TotalRooms / 17;
+        int n = Random.Range(1, max + 1);
         for (int i = 0; i < n; i++)
         {
             Entity e = (Entity) Activator.CreateInstance(EnemyList.GetRandomEnemy());
