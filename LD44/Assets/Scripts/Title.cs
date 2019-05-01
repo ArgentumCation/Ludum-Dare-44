@@ -5,6 +5,6 @@ public class Title : MonoBehaviour
 {
     private void OnMouseDown()
     {
-        SceneManager.LoadScene("Tutorial");
+        SceneManager.LoadScene("Story");
     }
 }
