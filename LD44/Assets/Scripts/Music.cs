@@ -12,11 +12,12 @@ public class Music : MonoBehaviour
         musicRef = this;
         DontDestroyOnLoad(gameObject);
         _audioSource = GetComponent<AudioSource>();
-        _audioSource.clip = songs[0];
+        SetSong(0);
     }
 
     public void SetSong(int n)
     {
         _audioSource.clip = songs[n];
+        _audioSource.Play();
     }
 }
