@@ -17,7 +17,15 @@ public class StoryText : MonoBehaviour
     private void Update()
     {
         int textCount = Texts.Count;
-        
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            RoomGenerator.RoomsUntilBoss = 6;
+        }
+        // Skips story
+        if (Input.anyKeyDown)
+        {
+            SceneManager.LoadScene("InGame");
+        }
         if (_progression < textCount - 1)
         {
             _progression += Time.deltaTime / Seconds;

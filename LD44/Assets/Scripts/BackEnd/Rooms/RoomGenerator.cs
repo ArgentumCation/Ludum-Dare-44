@@ -7,18 +7,23 @@ public class RoomGenerator
     public static int BattlesSinceArtifact;
     public static int TotalRooms;
 
+    public static int RoomsUntilBoss = 50;
+    public static int PreBossFountains = 4;
     public static void GenerateRoom()
     {
         TotalRooms++;
         GameObject roomObject = Object.Instantiate(RoomMB.RoomPrefab);
         RoomMB roomMb = roomObject.GetComponent<RoomMB>();
-        if (TotalRooms > 50)
+        if (TotalRooms > RoomsUntilBoss)
         {
-            if (TotalRooms < 54)
+            
+            // Adds fountains before boss
+            if (TotalRooms < RoomsUntilBoss + PreBossFountains)
             {
                 roomMb.Init(RoomType.FountainRoom);
             }
-            else if (TotalRooms == 54)
+            // Boss Room
+            else if (TotalRooms == RoomsUntilBoss + PreBossFountains)
             {
                 Music.musicRef.SetSong(2);
                 roomMb.Init(RoomType.BossRoom);
