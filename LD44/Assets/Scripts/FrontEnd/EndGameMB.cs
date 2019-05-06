@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndGameMB : MonoBehaviour
 {
@@ -32,7 +33,13 @@ public class EndGameMB : MonoBehaviour
         Color c = material.color;
         c.a += Time.deltaTime * 0.5f;
         if (c.a > 7)
-            Application.Quit();
+        {
+            SceneManager.LoadScene("Title");
+            Music.Stop();
+            RoomGenerator.TotalRooms = 0;
+        }
+            
+            //Application.Quit();
         material.color = c;
     }
 }

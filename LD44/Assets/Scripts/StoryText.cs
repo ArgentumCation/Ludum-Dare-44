@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,14 +17,27 @@ public class StoryText : MonoBehaviour
 
     private void Update()
     {
+        if (RoomGenerator.RoomsUntilBoss == 10)
+        {
+            Texts[0].GetComponent<TextMeshPro>().color = Color.red;
+        }
         int textCount = Texts.Count;
+        // Enables Showcase Mode
         if (Input.GetKeyDown(KeyCode.S))
         {
-            RoomGenerator.RoomsUntilBoss = 6;
+            if (RoomGenerator.RoomsUntilBoss == 10)
+            {
+                RoomGenerator.RoomsUntilBoss = 50;
+            }
+            else
+            {
+                RoomGenerator.RoomsUntilBoss = 10;
+            }
+            
         }
         // Skips story
         if (Input.anyKeyDown)
-        {
+        {   Music.musicRef.SetSong(1);
             SceneManager.LoadScene("InGame");
         }
         if (_progression < textCount - 1)
