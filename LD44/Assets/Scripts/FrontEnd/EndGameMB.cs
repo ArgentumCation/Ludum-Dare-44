@@ -28,12 +28,8 @@ public class EndGameMB : MonoBehaviour
         c.a += Time.deltaTime * 0.5f;
         if (c.a > 7)
         {
-            SceneManager.LoadScene("Title");
-            Music.Stop();
-            RoomGenerator.TotalRooms = 0;
+            Application.Quit();
         }
-            
-            //Application.Quit();
         material.color = c;
     }
 }
