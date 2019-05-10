@@ -37,7 +37,7 @@ public class StoryText : MonoBehaviour
         }
         // Skips story
         if (Input.anyKeyDown)
-        {   Music.musicRef.SetSong(1);
+        {   Music.MusicRef.SetSong(1);
             SceneManager.LoadScene("InGame");
         }
         if (_progression < textCount - 1)
@@ -51,7 +51,7 @@ public class StoryText : MonoBehaviour
             _progression += Time.deltaTime;
             if (_progression - textCount > 6)
             {
-                Music.musicRef.SetSong(1);
+                Music.MusicRef.SetSong(1);
                 SceneManager.LoadScene("InGame");
             }
         }

@@ -5,7 +5,7 @@ public class Title : MonoBehaviour
 {
     private void OnMouseDown()
     {
-        Music.musicRef.SetSong(3);
-        SceneManager.LoadScene("Story");
+        Music.MusicRef.SetSong(3);
+        SceneManager.LoadScene("Disclaimer");
     }
 }

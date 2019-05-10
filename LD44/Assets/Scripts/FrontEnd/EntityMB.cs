@@ -1,6 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(TMP_Text))]
 public class EntityMB : MonoBehaviour
 {
     private static readonly int Charge = Shader.PropertyToID("_Charge");

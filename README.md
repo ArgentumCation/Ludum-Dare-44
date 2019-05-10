@@ -5,5 +5,5 @@
  
  
  ## Known Bugs
- - The game really doesn't like Screen Ratios that aren't 16:9
- - Music doesn't play on mobile
+ - There are none, the game is perfect
+ - Needs more juice

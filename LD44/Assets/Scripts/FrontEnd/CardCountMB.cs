@@ -1,16 +1,16 @@
 ﻿using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(TMP_Text))]
 public class CardCountMB : MonoBehaviour
 {
-    private TextMeshPro _text;
+    private TMP_Text _text;
 
     private void Start()
     {
-        _text = GetComponent<TextMeshPro>();
+        _text = GetComponent<TMP_Text>();
     }
 
-    // Update is called once per frame
     private void Update()
     {
         _text.text = "Draws: " + Deck.Draws.Count + "\tDiscards: " + Deck.Discards.Count;

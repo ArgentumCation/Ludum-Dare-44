@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class EndGameMB : MonoBehaviour
 {
     public Sprite WinSprite;
@@ -17,14 +18,7 @@ public class EndGameMB : MonoBehaviour
 
     public void Activate(bool win)
     {
-        if (win)
-        {
-            _spriteRenderer.sprite = WinSprite;
-        }
-        else
-        {
-            _spriteRenderer.sprite = LoseSprite;
-        }
+        _spriteRenderer.sprite = win ? WinSprite : LoseSprite;
     }
 
     private void Update()

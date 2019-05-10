@@ -25,7 +25,7 @@ public class RoomGenerator
             // Boss Room
             else if (TotalRooms == RoomsUntilBoss + PreBossFountains)
             {
-                Music.musicRef.SetSong(2);
+                Music.MusicRef.SetSong(2);
                 roomMb.Init(RoomType.BossRoom);
             }
             else
