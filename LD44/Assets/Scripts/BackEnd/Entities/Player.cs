@@ -39,6 +39,8 @@ public class Player : Entity
                 buffPercent += buff.Amount;
         
         CurrentHealth -= Mathf.RoundToInt(Mathf.Max(damage * (1 - buffPercent / 100), 0));
+        
+        MeEntityMB.Attack();
     }
 
     public void UseFountain()

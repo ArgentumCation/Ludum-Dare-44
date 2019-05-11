@@ -22,8 +22,8 @@ public class BattleRoom : Room
             Enemies.Add(e);
             GameObject entityObject = Object.Instantiate(EntityMB.EntityPrefab, RoomMB.ActiveRoom.transform);
             EntityMB entityMb = entityObject.GetComponent<EntityMB>();
-            entityMb.Init(e);
             entityObject.transform.localPosition = new Vector3(2 + i * 1.7f, 0, 0);
+            entityMb.Init(e);
         }
     }
 

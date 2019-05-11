@@ -47,8 +47,8 @@ public class Music : MonoBehaviour
     {
         for (float t = 0; t < fadeTime; t += Time.deltaTime)
         {
-            oldSource.volume = Mathf.Lerp(_maxVolume,0.0f,t/fadeTime);
-            newSource.volume = Mathf.Lerp(0.0f,_maxVolume,t/fadeTime);
+            oldSource.volume = Mathf.Lerp(_maxVolume,0,t/fadeTime);
+            newSource.volume = Mathf.Lerp(0,_maxVolume,t/fadeTime);
 
             yield return null;
         }

@@ -19,7 +19,7 @@ public class Bootstrap : MonoBehaviour
         EntityMB.EntityPrefab = EntityPrefab;
         AddCardMB.AddCardPrefab = AddCardPrefab;
         FountainMB.FountainPrefab = FountainPrefab;
-        BattleManager.EndGameObject = EndGameObject;
+        BattleManager.EndGameObject = EndGameObject.GetComponent<EndGameMB>();
 
         new Player();
 

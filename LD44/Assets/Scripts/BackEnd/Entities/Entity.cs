@@ -6,24 +6,24 @@ public abstract class Entity
     // Current buffs on entity
     public List<Buff> Buffs = new List<Buff>();
 
+    // max entity health
+    public int MaxHealth;
     // entity health remaining
     private int _currentHealth;
-
-    public int AttackDamage;
-
     public int CurrentHealth
     {
         get => _currentHealth;
         set => _currentHealth = value < MaxHealth ? value : MaxHealth;
     }
 
+    public int AttackDamage;
+
     // whether or not entity or friendly
     public bool IsFriendly;
-
-    // max entity health
-    public int MaxHealth;
-
+    
     public Sprite EntityArt;
+
+    public EntityMB MeEntityMB;
 
     public Entity()
     {
@@ -45,6 +45,8 @@ public abstract class Entity
                 buffPercent += buff.Amount;
         
         CurrentHealth -= Mathf.RoundToInt(Mathf.Max(damage * (1 - buffPercent / 100), 0));
+        
+        MeEntityMB.TakeDamage();
     }
 
     public virtual void Heal(int amount)

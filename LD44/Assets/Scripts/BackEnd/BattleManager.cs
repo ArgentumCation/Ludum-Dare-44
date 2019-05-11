@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleManager
 {
     public static BattleManager BattleManagerRef;
-    public static GameObject EndGameObject;
+    public static EndGameMB EndGameObject;
 
     public List<Entity> Enemies;
 
@@ -23,15 +24,15 @@ public class BattleManager
     {
         if (e == Player.PlayerRef)
         {
-            EndGameObject.SetActive(true);
-            EndGameObject.GetComponent<EndGameMB>().Activate(false);
+            EndGameObject.gameObject.SetActive(true);
+            EndGameObject.Activate(false);
         }
 
         if (Enemies.Remove(e))
         {
             if (Enemies.Count == 0)
             {
-                RoomMB.ActiveRoom.Exit();
+                RoomMB.ActiveRoom.StartCoroutine(WaitExitRoom());
             }
 
             return;
@@ -39,5 +40,11 @@ public class BattleManager
 
         Friendlies.Remove(e);
         TeamMB.TeamRef.TeamUpdated();
+    }
+
+    private IEnumerator WaitExitRoom()
+    {
+        yield return new WaitForSeconds(2);
+        RoomMB.ActiveRoom.Exit();
     }
 }

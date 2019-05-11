@@ -59,25 +59,21 @@ public class BattleActionManager
         RoomMB.ActiveRoom.StartCoroutine(WaitAndAttackPlayer());
     }
 
-    private static void AttackPlayer()
+    private static IEnumerator WaitAndAttackPlayer()
     {
+        yield return new WaitForSeconds(1.6f);
         if (BattleManager.BattleManagerRef.Enemies.Count != 0)
         {
             List<Entity> enemies = BattleManager.BattleManagerRef.Enemies;
             Entity attacking = enemies[Random.Range(0, enemies.Count)];
+            attacking.MeEntityMB.Attack();
+            yield return new WaitForSeconds(0.7f);
             Player.PlayerRef.TakeHitDamage(attacking.GetAttackDamage());
+            yield return new WaitForSeconds(1);
 
-            if (!CheckSpellsUsable())
-                return;
-
-            State = BattleActionState.SelectCard;
+            if (CheckSpellsUsable())
+                State = BattleActionState.SelectCard;
         }
-    }
-
-    private static IEnumerator WaitAndAttackPlayer()
-    {
-        yield return new WaitForSeconds(0.5f);
-        AttackPlayer();
     }
 
     public static bool CheckSpellsUsable()
@@ -104,8 +100,8 @@ public class BattleActionManager
         }
 
         
-        BattleManager.EndGameObject.SetActive(true);
-        BattleManager.EndGameObject.GetComponent<EndGameMB>().Activate(false);
+        BattleManager.EndGameObject.gameObject.SetActive(true);
+        BattleManager.EndGameObject.Activate(false);
         return false;
     }
 }
